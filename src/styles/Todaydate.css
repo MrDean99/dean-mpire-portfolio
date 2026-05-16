@@ -1,0 +1,49 @@
+/* ── Date Badge — fixed to top right ─────── */
+.hero__date-badge {
+  position: fixed;
+  top: 100px;          /* below the navbar */
+  right: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;       /* pill shape */
+  padding: 6px 14px;
+  animation: fadeSlideDown 5s ease  infinite; /* slides in on load */
+  /* animation: badgeFloat 4s ease-in-out infinite; */
+  z-index: 1000;
+}
+
+/* Blinking green dot */
+.hero__date-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #4ade80;  /* green */
+  border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.hero__date-text {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.3px;
+  white-space: nowrap;   /* don't wrap to two lines */
+}
+
+@media (max-width: 768px) {
+  .hero__date-badge {
+    top: 80px;
+    right: 12px;
+    padding: 5px 10px;
+  }
+
+  .hero__date-text {
+    font-size: 10px;
+  }
+}

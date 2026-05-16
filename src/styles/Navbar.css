@@ -1,0 +1,206 @@
+/* ============================================
+   Navbar.css — Styles for the Navigation Bar
+   ============================================ */
+
+/* ── Base Navbar ─────────────────────────── */
+.navbar {
+  /* Fixed = stays at top even when scrolling */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* sits on top of everything */
+
+  /* Start transparent */
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+
+  /* Smooth background transition on scroll */
+  transition: background-color 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+
+  padding: 20px 0;
+}
+
+/* When scrolled — frosted glass effect */
+.navbar--scrolled {
+  background-color: rgba(20, 19, 19, 0.85);
+  border-bottom-color: var(--color-border);
+  backdrop-filter: blur(12px);          /* blur the content behind */
+  -webkit-backdrop-filter: blur(12px);  /* Safari support */
+  padding: 14px 0;
+}
+
+/* ── Inner Layout ────────────────────────── */
+/* The container inside the navbar */
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo left, links right */
+  /* border: 1px solid green; */
+}
+
+/* ── Logo ────────────────────────────────── */
+.navbar__logo {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.5px;
+  transition: opacity var(--transition);
+}
+
+.navbar__logo:hover {
+  opacity: 0.8;
+}
+
+.navbar__logoimg{
+  width: 10rem;
+  /* border: 1px solid pink; */
+}
+
+/* The small amber square before the logo text */
+.navbar__logo-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent);
+  border-radius: 2px;
+}
+
+/* ── Navigation Links ────────────────────── */
+.navbar__links {
+  /* border: 1px solid blue; */
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none; /* remove bullet points */
+}
+
+/* Individual link */
+.navbar__links a {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  transition: color var(--transition);
+  position: relative; /* needed for the underline effect below */
+}
+
+/* Underline animation on hover */
+.navbar__links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;           /* starts at 0 width */
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width var(--transition);
+}
+
+.navbar__links a:hover::after,
+.navbar__links a.active::after {  /* .active is added by NavLink */
+  width: 100%; /* expands on hover / when active */
+}
+
+/* Hover and active color */
+.navbar__links a:hover,
+.navbar__links a.active {
+  color: var(--color-text);
+}
+
+/* Don't add underline to the CTA button */
+.navbar__cta::after {
+  display: none !important;
+}
+
+/* CTA button overrides */
+.navbar__cta {
+  padding: 8px 20px !important;
+  font-size: 13px !important;
+  letter-spacing: 0.5px;
+}
+
+/* ── Hamburger Button (hidden on desktop) ── */
+.navbar__hamburger {
+  display: none; /* hidden on desktop */
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Each line of the hamburger */
+.navbar__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animate into X when open */
+.navbar__hamburger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar__hamburger--open span:nth-child(2) {
+  opacity: 0; /* hide the middle line */
+}
+.navbar__hamburger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile Styles ───────────────────────── */
+@media (max-width: 768px) {
+
+  /* Show the hamburger button */
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  /* Stack links vertically, hidden by default */
+  .navbar__links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75vw;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--color-bg-card);
+    border-left: 1px solid var(--color-border);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 28px;
+    padding: 48px 40px;
+
+    /* Hidden by default — slides in from the right */
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+  }
+
+  /* When menu is open, slide in */
+  .navbar__links--open {
+    transform: translateX(0);
+  }
+
+  /* Bigger links on mobile */
+  .navbar__links a {
+    font-size: 18px;
+    color: var(--color-text);
+  }
+
+  .navbar__cta {
+    padding: 10px 24px !important;
+    font-size: 15px !important;
+  }
+}

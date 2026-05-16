@@ -1,0 +1,67 @@
+/* ProfileBio.css */
+.profile-bio { border-top: 1px solid var(--color-border); background-color: var(--color-bg-card);}
+
+.profile-bio__inner {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.profile-bio__heading {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--space-lg);
+}
+
+/* Highlight chips */
+.profile-bio__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.profile-bio__chip {
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+
+.profile-bio__chip:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Bio paragraphs */
+.profile-bio__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding-top: 52px; /* align with heading area */
+}
+
+.profile-bio__text p {
+  font-size: 15px;
+  color: var(--color-text-muted);
+  line-height: 1.9;
+}
+
+.profile-bio__text strong {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+@media (max-width: 860px) {
+  .profile-bio__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  .profile-bio__text { padding-top: 0; }
+}

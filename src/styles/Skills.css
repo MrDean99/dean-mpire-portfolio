@@ -1,0 +1,205 @@
+/* ============================================
+   Skills.css — Skills Section Styles
+   ============================================
+   Matches the reference: icon + name + dashes
+   Two columns, editorial dark aesthetic.
+   ============================================ */
+
+/* ── Section ─────────────────────────────── */
+.skills {
+  background-color: var(--color-bg-card);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ── Header ──────────────────────────────── */
+.skills__header {
+  margin-bottom: var(--space-xl);
+}
+
+/* Big display heading — matches "Softwares" in the reference */
+.skills__heading {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.skills__subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ── Category block ──────────────────────── */
+.skills__category {
+  margin-bottom: var(--space-xl);
+}
+
+/* Category sub-heading — e.g. "Development" */
+.skills__category-heading {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  letter-spacing: -0.3px;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ── Two-column grid of skill rows ──────────
+   Same layout as the reference image:
+   left column and right column side by side.
+──────────────────────────────────────────── */
+.skills__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  /* no gap — dividers are drawn with borders */
+}
+
+/* ── Single skill row ────────────────────── */
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px 18px 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--transition);
+}
+
+/* Add left padding to right-column rows */
+.skills__grid .skill-row:nth-child(even) {
+  padding-left: 40px;
+  border-left: 1px solid var(--color-border);
+}
+
+.skill-row:hover {
+  background-color: var(--color-bg-card);
+}
+
+/* ── Icon box ────────────────────────────── */
+/*
+  Square box with rounded corners.
+  Background and text color set via inline style in JSX.
+  This matches the Ai, Ps, Id boxes in the reference.
+*/
+.skill-row__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+  /* never shrink the icon */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Skill name ──────────────────────────── */
+.skill-row__name {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text);
+  white-space: nowrap;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+/* ── Dashed bar ──────────────────────────── */
+/*
+  A row of individual dash spans.
+  Each dash transitions from empty → filled color.
+*/
+.skill-row__bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+  /* take all remaining width */
+}
+
+/* Each individual dash */
+.skill-row__dash {
+  height: 3px;
+  flex: 1;
+  /* equal width, fills the bar */
+  border-radius: 2px;
+  /*
+    We animate the background-color property.
+    On mount: all dashes start as "empty" color.
+    When animate=true: filled dashes transition to amber.
+    The transitionDelay set inline creates the stagger effect.
+  */
+  transition: background-color 0.4s ease;
+}
+
+/* Empty dash — dark grey */
+.skill-row__dash--empty {
+  background-color: var(--color-border);
+}
+
+/*
+  Filled dash — starts as empty color,
+  transitions to amber when animate=true.
+  The component sets animate via the
+  IntersectionObserver (scroll into view).
+*/
+.skill-row__dash--filled {
+  background-color: var(--color-border);
+  /* starts empty */
+}
+
+/*
+  When the parent section gets the "animate" attribute,
+  we switch filled dashes to amber.
+  
+  BUT — we do this with a class toggle instead.
+  The JSX applies transitionDelay inline per dash,
+  and we switch the color by checking the prop.
+  
+  The trick: we add a data-animate attribute to the
+  section element and use CSS to target filled dashes.
+*/
+.skills--animated .skill-row__dash--filled {
+  background-color: var(--color-accent);
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 768px) {
+
+  /* ── Category block ──────────────────────── */
+  .skills__category {
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Stack to single column on mobile */
+  .skills__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reset the even-child left padding/border */
+  .skills__grid .skill-row:nth-child(even) {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .skill-row__name {
+    min-width: 80px;
+    font-size: 12px;
+  }
+
+  .skill-row__icon {
+    width: 38px;
+    height: 38px;
+    font-size: 11px;
+    border-radius: 8px;
+  }
+}

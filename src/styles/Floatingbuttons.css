@@ -1,0 +1,154 @@
+/* ============================================
+   FloatingButtons.css
+   ============================================ */
+
+/* ── Fixed container ─────────────────────── */
+/*
+  position: fixed — stays in place as user scrolls.
+  bottom + right — anchors to bottom-right corner.
+  z-index: 999 — sits above everything except modals.
+  flex-direction: column-reverse so the FIRST button
+  in the array sits at the BOTTOM (closest to corner).
+*/
+.floating-btns {
+  position: fixed;
+  bottom: 32px;
+  right: 28px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  pointer-events: none; /* container is transparent to clicks */
+}
+
+/* ── Individual pill button ──────────────── */
+.floating-btn {
+  /* Re-enable clicks on actual buttons */
+  pointer-events: all;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0;               /* gap managed by padding inside */
+  border-radius: 100px; /* pill shape */
+  text-decoration: none;
+  overflow: hidden;     /* clips the icon circle */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* Slide-in from the right — starts off-screen */
+  transform: translateX(calc(100% + 60px));
+  opacity: 0;
+
+  /*
+    Transition animates BOTH the slide and the fade.
+    cubic-bezier gives it a satisfying spring-like feel.
+  */
+  transition:
+    transform  0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity    0.4s ease,
+    box-shadow 0.25s ease,
+    filter     0.25s ease;
+
+  /* Subtle shadow */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+
+  /* Prevent text selection on click */
+  user-select: none;
+  cursor: pointer;
+}
+
+/* ── Visible state — slides into view ───── */
+/*
+  When .floating-btn--visible is added by React,
+  the button transitions from off-screen to its
+  natural position.
+*/
+.floating-btn--visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* ── Hover — slight lift + brighter ─────── */
+.floating-btn:hover {
+  transform: translateX(0) translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  filter: brightness(1.08);
+}
+
+/* Active / tap — press down */
+.floating-btn:active {
+  transform: translateX(0) translateY(-1px);
+  filter: brightness(0.95);
+}
+
+/* ── Circular icon wrapper ───────────────── */
+/*
+  This is the circle on the left of the pill.
+  Its background-color is set inline from data.
+*/
+.floating-btn__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  /* Pull icon slightly left to sit flush at the pill edge */
+  margin: 3px;
+}
+
+.floating-btn__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ── Text label ──────────────────────────── */
+.floating-btn__label {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  padding: 0 20px 0 12px;
+  /* Smooth show/hide on resize */
+  transition: max-width 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+/* ── Mobile — icon only ──────────────────── */
+/*
+  On small screens, collapse the text label.
+  Only the circular icon remains, so the pill
+  becomes a circle.
+*/
+@media (max-width: 600px) {
+  .floating-btns {
+    bottom: 20px;
+    right: 16px;
+    gap: 10px;
+  }
+
+  .floating-btn__label {
+    max-width: 0;
+    opacity: 0;
+    padding: 0;       /* remove left/right padding */
+  }
+
+  /* Make the pill a perfect circle */
+  .floating-btn {
+    border-radius: 50%;
+  }
+
+  .floating-btn__icon {
+    width: 52px;
+    height: 52px;
+    margin: 0;
+  }
+
+  .floating-btn__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}

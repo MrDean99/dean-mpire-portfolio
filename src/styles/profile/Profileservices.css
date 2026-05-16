@@ -1,0 +1,130 @@
+/* ProfileServices.css */
+.profile-services { border-top: 1px solid var(--color-border); }
+
+.profile-services__header { margin-bottom: var(--space-xl); }
+.profile-services__subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  max-width: 500px;
+  margin-top: -16px;
+}
+
+/* Two-column grid */
+.profile-services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* ── Service card ────────────────────────── */
+.svc-card {
+  --svc-accent: var(--color-accent); /* fallback — overridden inline */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 28px 28px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.svc-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+}
+
+/* Top accent stripe — uses per-card CSS variable */
+.svc-card__top-border {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--svc-accent);
+}
+
+/* Icon */
+.svc-card__icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--svc-accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--svc-accent) 25%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svc-card__icon { font-size: 24px; }
+
+/* Title */
+.svc-card__title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+/* Description */
+.svc-card__description {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+/* Deliverables list */
+.svc-card__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.svc-card__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* The dot bullet */
+.svc-card__list-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--svc-accent);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+/* Footer */
+.svc-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.svc-card__price {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--svc-accent);
+}
+
+.svc-card__enquire {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.svc-card:hover .svc-card__enquire { color: var(--svc-accent); }

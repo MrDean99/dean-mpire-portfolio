@@ -1,0 +1,158 @@
+/* ============================================
+   ContactInfo.css
+   ============================================ */
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    width: 100%;
+}
+
+/* ── Heading block ───────────────────────── */
+.contact-info__heading-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.contact-info__heading {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-text);
+}
+
+.contact-info__subtext {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    max-width: 420px;
+}
+
+/* ── 2×2 cards grid ──────────────────────── */
+.contact-info__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+/* Individual info card */
+.contact-info__card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition), transform var(--transition);
+    cursor: pointer;
+}
+
+.contact-info__card:hover {
+    border-color: rgba(245, 166, 35, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Icon circle */
+.contact-info__card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.contact-info__card-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Label + value stacked */
+.contact-info__card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    /* allows text truncation */
+}
+
+.contact-info__card-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.contact-info__card-value {
+    font-size: 13px;
+    color: var(--color-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* "..." if text is too long */
+}
+
+/* ── Social media row ────────────────────── */
+.contact-info__social {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding-top: var(--space-md);
+    /* border-top: 1px solid var(--color-border); */
+    flex-wrap: wrap;
+}
+
+.contact-info__social-label {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.contact-info__social-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    /* border: 1px solid red; */
+}
+
+/* Social icon button */
+.contact-info__social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    transition: all var(--transition);
+    text-decoration: none;
+    /* border: 2px solid blue; */
+}
+
+.contact-info__social-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.contact-info__social-btn:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #0a0a0a;
+    transform: translateY(-2px);
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 480px) {
+    .contact-info__cards {
+        grid-template-columns: 1fr;
+    }
+}

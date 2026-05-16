@@ -1,0 +1,101 @@
+/* ProfileEducation.css */
+.profile-edu { border-top: 1px solid var(--color-border); }
+
+.profile-edu__header { margin-bottom: var(--space-xl); }
+
+/* Three-column auto-fill grid */
+.profile-edu__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* ── Education card ──────────────────────── */
+.edu-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.edu-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(245,166,35,0.35);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+/* Top row */
+.edu-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edu-card__icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.edu-card__period {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--color-text-faint);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  padding: 3px 10px;
+}
+
+/* Degree */
+.edu-card__degree {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+/* Institution */
+.edu-card__institution {
+  font-size: 13px;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* Grade badge */
+.edu-card__grade {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.25);
+  color: var(--color-accent);
+  width: fit-content;
+}
+
+/* Description */
+.edu-card__description {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  flex: 1;
+}
+
+/* Bottom accent line — grows on hover */
+.edu-card__line {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--color-accent);
+  transition: width 0.4s ease;
+}
+
+.edu-card:hover .edu-card__line { width: 100%; }

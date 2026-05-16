@@ -1,0 +1,223 @@
+/* ============================================
+   FeaturedProjects.css
+   ============================================ */
+
+/* ── Section ─────────────────────────────── */
+.featured {
+  /* background-color: var(--color-bg); */
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── Header row ──────────────────────────── */
+/* Space-between pushes the "See all" link to the right */
+.featured__header {
+  display: flex;
+  /* align-items: flex-end; */
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  gap: var(--space-md);
+}
+
+.featured__header-text .section-title {
+  margin-bottom: 0;
+  /* remove default bottom margin */
+}
+
+/* "See all →" link */
+.featured__see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--transition);
+  padding-bottom: 4px;
+  /* aligns with the title baseline */
+}
+
+.featured__see-all:hover {
+  color: var(--color-accent);
+}
+
+.featured__see-all-arrow {
+  display: inline-block;
+  transition: transform var(--transition);
+}
+
+.featured__see-all:hover .featured__see-all-arrow {
+  transform: translateX(4px);
+}
+
+/* ── Tabs ────────────────────────────────── */
+.featured__tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: var(--space-xl);
+  /* border-bottom: 1px solid var(--color-border); */
+  padding-bottom: 0;
+  /* tabs sit right on the border */
+}
+
+/* Each tab button */
+.featured__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition);
+  position: relative;
+  /* Translate down by 1px so the active underline sits ON the border */
+  bottom: -1px;
+}
+
+.featured__tab:hover {
+  color: var(--color-accent);
+}
+
+/* Active tab — amber underline */
+.featured__tab--active {
+  color: var(--color-text);
+}
+
+/* The underline is a pseudo-element that slides in */
+.featured__tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.featured__tab--active::after {
+  width: 100%;
+}
+
+/* Project count pill inside the tab */
+.featured__tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  color: var(--color-text-muted);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.featured__tab--active .featured__tab-count {
+  background-color: var(--color-accent);
+  color: #0a0a0a;
+  border-color: var(--color-accent);
+}
+
+/* ── Project grid ────────────────────────── */
+/*
+  auto-fill: creates as many columns as fit
+  minmax(280px, 1fr): each column is at least 280px,
+  at most 1fr (equal share of available width).
+  This gives us 3 on desktop, 2 on tablet, 1 on mobile.
+*/
+.featured__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: var(--space-xl);
+
+  /* Fade + rise animation when tab switches */
+  animation: gridFadeIn 0.35s ease both;
+}
+
+@keyframes gridFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Bottom CTA row ──────────────────────── */
+.featured__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border-radius: 16px;
+  /* border-top: 1px solid var(--color-border); */
+  background-color: var(--color-bg-card);
+  /* text-align: center; */
+}
+
+.featured__bottom-text {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.featured__bottom-links {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.featured__bottom-links .btn-secondary{
+  background-color: var(--color-bg) !important;
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 768px) {
+  .featured__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .featured__tabs {
+    overflow-x: auto;
+    /* scroll tabs on small screens */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .featured__tab {
+    white-space: nowrap;
+  }
+
+  .featured__bottom {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .featured__bottom-text {
+    color: var(--color-text-muted);
+  }
+
+  .featured__bottom-links {
+    width: 100%;
+  }
+
+  .featured__bottom-links .btn {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
+}

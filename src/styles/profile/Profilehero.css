@@ -1,0 +1,308 @@
+/* ============================================
+   ProfileHero.css
+   ============================================ */
+
+.profile-hero {
+  position: relative;
+  padding-top: 120px;
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+  /* border: 1px solid red; */
+}
+
+/* Amber glow blob */
+.profile-hero__glow {
+  position: absolute;
+  top: 0;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  animation: glowPulse 7s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* ── Two-column layout ───────────────────── */
+.profile-hero__inner {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+/* ── Photo column ────────────────────────── */
+.profile-hero__photo-wrap {
+  position: relative;
+}
+
+/* Corner brackets */
+.profile-hero__corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+}
+
+.profile-hero__corner--tl {
+  top: -12px;
+  left: -12px;
+  border-top: 2px solid var(--color-accent);
+  border-left: 2px solid var(--color-accent);
+}
+
+.profile-hero__corner--br {
+  bottom: -12px;
+  right: -12px;
+  border-bottom: 2px solid var(--color-accent);
+  border-right: 2px solid var(--color-accent);
+}
+
+/* Photo box */
+.profile-hero__photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Placeholder */
+.profile-hero__photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.profile-hero__photo-icon {
+  font-size: 52px;
+  opacity: 0.2;
+}
+
+.profile-hero__photo-hint {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.profile-hero__photo-sub {
+  font-size: 10px;
+  color: var(--color-text-faint);
+  line-height: 1.7;
+}
+
+/* Floating badge */
+.profile-hero__badge {
+  position: absolute;
+  bottom: 24px;
+  left: -20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  animation: float 4s ease-in-out infinite;
+}
+
+.profile-hero__badge-dot {
+  width: 7px;
+  height: 7px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0)
+  }
+
+  50% {
+    transform: translateY(-6px)
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1
+  }
+
+  50% {
+    opacity: 0.3
+  }
+}
+
+/* ── Info column ─────────────────────────── */
+.profile-hero__info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-hero__name {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -1.5px;
+}
+
+.profile-hero__title {
+  font-size: 15px;
+  color: var(--color-accent);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.profile-hero__tagline {
+  font-size: 15px;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  max-width: 500px;
+}
+
+/* Stats row */
+.profile-hero__stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+.profile-hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-hero__stat-number {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.profile-hero__stat-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.profile-hero__stat-div {
+  width: 1px;
+  height: 40px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* Actions: CV button + socials */
+.profile-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.profile-hero__cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Social icon buttons */
+.profile-hero__socials {
+  display: flex;
+  gap: 8px;
+  /* border: 1px solid red; */
+}
+
+.profile-hero__social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* font-family: var(--font-display); */
+  /* font-size: 10px; */
+  /* font-weight: 700; */
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: all var(--transition);
+  /* border: 2px solid blue; */
+}
+
+.profile-hero__social-btn svg { width: 15px; height: 15px; }
+
+.profile-hero__social-btn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #0a0a0a;
+  transform: translateY(-2px);
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 900px) {
+  .profile-hero__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .profile-hero__photo-wrap {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .profile-hero__badge {
+    left: 0;
+  }
+
+  .profile-hero__name {
+    letter-spacing: -1px;
+  }
+}

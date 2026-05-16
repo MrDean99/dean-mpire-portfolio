@@ -1,0 +1,35 @@
+/* ============================================
+   ContactSection.css — Layout Wrapper
+   ============================================ */
+
+/* .contact-section {
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+} */
+
+/* Two-column grid: form left, info right */
+.contact-section__grid {
+  display: grid;
+  /*
+    Left column (form): 480px wide
+    Right column (info): takes the rest
+  */
+  grid-template-columns: 480px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 960px) {
+  .contact-section__grid {
+    /* Stack vertically on smaller screens — info goes first */
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  .contact-section__grid > :nth-child(2){
+    order: -1;
+  }
+  .section-label{
+    display: none;
+  }
+}
