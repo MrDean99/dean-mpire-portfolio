@@ -16,13 +16,13 @@ import Footer from './components/Footer'
 // Pages (each one is a different URL)
 import Home from './pages/Home'
 import Profile from './pages/Profile'
-import WebProjects from './pages/WebProjects'
-import GraphicsWork from './pages/GraphicsWork'
+import WebProjects from './pages/Webprojects'
+import GraphicsWork from './pages/Graphicswork'
 import Contact from './pages/Contact'
 import Works from './pages/Works'
 
 // Global styles — imported once here, applies everywhere
-import './styles/global.css'
+import './styles/Global.css'
 import Todaydate from './components/Todaydate'
 import FloatingButtons from './components/Floatingbuttons'
 
