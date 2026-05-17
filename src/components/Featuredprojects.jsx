@@ -17,9 +17,9 @@
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import ProjectCard from './ProjectCard'
+import ProjectCard from './Projectcard'
 import { webProjects, graphicsProjects } from '../data/projectsData'
-import '../styles/FeaturedProjects.css'
+import '../styles/Featuredprojects.css'
 
 // ── Tab config ──────────────────────────────
 // Adding a new tab = add one object here.

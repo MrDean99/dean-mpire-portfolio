@@ -2,7 +2,7 @@ import About from "../components/About"
 import ContactSection from "../components/Contactsection"
 import FeaturedProjects from "../components/Featuredprojects"
 import Hero from "../components/Hero"
-import ProfileServices from "../components/profile/ProfileServices"
+import ProfileServices from "../components/profile/Profileservices"
 import Skills from "../components/Skills"
 
 // Home.jsx — placeholder (we'll build sections here next)

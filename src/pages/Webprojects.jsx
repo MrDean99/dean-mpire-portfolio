@@ -2,9 +2,9 @@
 // WebProjects.jsx — Web Projects Full Page
 // ============================================
 
-import ProjectCard from '../components/ProjectCard'
+import ProjectCard from '../components/Projectcard'
 import { webProjects } from '../data/projectsData'
-import '../styles/WebProjects.css'
+import '../styles/Webprojects.css'
 
 function WebProjects() {
   return (

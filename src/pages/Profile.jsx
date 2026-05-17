@@ -12,11 +12,11 @@
 // To add/remove a section — just comment it out here.
 // ============================================
 
-import ProfileHero from '../components/profile/ProfileHero'
-import ProfileBio from '../components/profile/ProfileBio'
-// import ProfileEducation from '../components/profile/ProfileEducation'
-// import ProfileCertificates from '../components/profile/ProfileCertificates'
-import ProfileServices from '../components/profile/ProfileServices'
+import ProfileHero from '../components/profile/Profilehero'
+import ProfileBio from '../components/profile/Profilebio'
+// import ProfileEducation from '../components/profile/Profileeducation'
+// import ProfileCertificates from '../components/profile/Profilecertificates'
+import ProfileServices from '../components/profile/Profileservices'
 import Skills from '../components/Skills'
 
 import '../styles/Profile.css'

@@ -2,7 +2,7 @@
 // GraphicsWork.jsx — Graphics Work Full Page
 // ============================================
 
-import ProjectCard from '../components/ProjectCard'
+import ProjectCard from '../components/Projectcard'
 import { graphicsProjects } from '../data/projectsData'
 import '../styles/GraphicsWork.css'
 

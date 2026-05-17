@@ -15,13 +15,13 @@
 // ============================================
 
 import { useState } from 'react'
-import '../styles/ContactForm.css'
+import '../styles/Contactform.css'
 
 // ── Initial empty form state ─────────────────
 // Defined outside component so it's never recreated
 const EMPTY_FORM = {
-  name:    '',
-  email:   '',
+  name: '',
+  email: '',
   subject: '',
   message: '',
   privacy: false,
@@ -29,13 +29,13 @@ const EMPTY_FORM = {
 
 function ContactForm() {
   // "fields" holds all form values in one object
-  const [fields, setFields]   = useState(EMPTY_FORM)
+  const [fields, setFields] = useState(EMPTY_FORM)
 
   // "errors" holds validation messages per field
-  const [errors, setErrors]   = useState({})
+  const [errors, setErrors] = useState({})
 
   // "status": null | 'sending' | 'sent' | 'error'
-  const [status, setStatus]   = useState(null)
+  const [status, setStatus] = useState(null)
 
   // ── Handle any input change ─────────────────
   // One handler for all fields — reads the input's "name" attribute
@@ -54,13 +54,13 @@ function ContactForm() {
   // ── Validation ──────────────────────────────
   function validate() {
     const newErrors = {}
-    if (!fields.name.trim())    newErrors.name    = 'Name is required'
-    if (!fields.email.trim())   newErrors.email   = 'Email is required'
+    if (!fields.name.trim()) newErrors.name = 'Name is required'
+    if (!fields.email.trim()) newErrors.email = 'Email is required'
     else if (!/\S+@\S+\.\S+/.test(fields.email))
-                                newErrors.email   = 'Enter a valid email'
+      newErrors.email = 'Enter a valid email'
     if (!fields.subject.trim()) newErrors.subject = 'Subject is required'
     if (!fields.message.trim()) newErrors.message = 'Message is required'
-    if (!fields.privacy)        newErrors.privacy = 'Please agree to continue'
+    if (!fields.privacy) newErrors.privacy = 'Please agree to continue'
     return newErrors
   }
 

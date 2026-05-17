@@ -6,7 +6,7 @@
 // Udemy, etc.) or null to hide the verify button.
 // ============================================
 
-import '../../styles/profile/ProfileCertificates.css'
+import '../../styles/profile/Profilecertificates.css'
 
 // ── ✏️ YOUR CERTIFICATES — edit/add/remove ───
 const CERTS_DATA = [

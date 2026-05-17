@@ -14,9 +14,9 @@
 //   import ContactInfo from './ContactInfo'
 // ============================================
 
-import ContactForm from './ContactForm'
-import ContactInfo from './ContactInfo'
-import '../styles/ContactSection.css'
+import ContactForm from './Contactform'
+import ContactInfo from './Contactinfo'
+import '../styles/Contactsection.css'
 
 function ContactSection() {
   return (

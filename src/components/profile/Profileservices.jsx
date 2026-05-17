@@ -6,7 +6,7 @@
 // list of deliverables, and a starting price.
 // ============================================
 
-import '../../styles/profile/ProfileServices.css'
+import '../../styles/profile/Profileservices.css'
 
 // ── ✏️ YOUR SERVICES — edit/add/remove ───────
 const SERVICES_DATA = [

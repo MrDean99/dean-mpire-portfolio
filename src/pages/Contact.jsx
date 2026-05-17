@@ -1,7 +1,7 @@
 // ============================================
 // Contact.jsx — Contact Page
 // ============================================
-import ContactSection from '../components/ContactSection'
+import ContactSection from '../components/Contactsection'
 import '../styles/Contact.css'
 
 function Contact() {

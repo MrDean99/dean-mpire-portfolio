@@ -16,7 +16,7 @@
 //   index       — card number for the small counter badge
 // ============================================
 
-import '../styles/ProjectCard.css'
+import '../styles/Projectcard.css'
 
 function ProjectCard({ image, title, description, tags, liveUrl, category, index }) {
   return (

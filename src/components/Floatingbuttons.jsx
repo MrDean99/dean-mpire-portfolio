@@ -23,7 +23,7 @@
 // ============================================
 
 import { useState, useEffect, useRef } from 'react'
-import '../styles/FloatingButtons.css'
+import '../styles/Floatingbuttons.css'
 
 // ── TIMING CONSTANTS ─────────────────────────
 // Change these numbers to control the rhythm.

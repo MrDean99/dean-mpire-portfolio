@@ -5,7 +5,7 @@
 // Each object = one card.
 // ============================================
 
-import '../../styles/profile/ProfileEducation.css'
+import '../../styles/profile/Profileeducation.css'
 
 // ── ✏️ YOUR EDUCATION — edit/add/remove ──────
 const EDUCATION_DATA = [

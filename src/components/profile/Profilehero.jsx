@@ -13,7 +13,7 @@
 // ============================================
 
 import { myData, SOCIALS } from '../../data/myData'
-import '../../styles/profile/ProfileHero.css'
+import '../../styles/profile/Profilehero.css'
 
 
 // ── ✏️ YOUR DETAILS — edit these ─────────────

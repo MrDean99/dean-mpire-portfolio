@@ -11,7 +11,7 @@
 // ============================================
 
 import { CONTACT_INFO_CARDS, SOCIALS } from '../data/myData'
-import '../styles/ContactInfo.css'
+import '../styles/Contactinfo.css'
 
 // ── UPDATE YOUR DETAILS HERE ─────────────────
 const INFO_CARDS = CONTACT_INFO_CARDS
