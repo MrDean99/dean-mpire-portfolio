@@ -75,7 +75,7 @@ export const graphicsProjects = [
     title: 'New Month Fyler - DeanMpire',
     description:
       'Brand New Month flyer for the month of March for DeanMpire',
-    image: "/public/img6.jpg",
+    image: "/img6.jpg",
     tags: ['PhotoShop', 'Canvas', 'Branding', 'Social Media Ads'],
     liveUrl: null,  // link to Behance or Dribbble
     featured: true,
@@ -85,7 +85,7 @@ export const graphicsProjects = [
     title: 'Brand Flyer - Xlinks',
     description:
       'Brand Business Flyer for X-links',
-    image: "/public/img7.jpg",
+    image: "/img7.jpg",
     tags: ['Photoshop', 'Illustrator', 'Print', 'Branding'],
     liveUrl: null,
     featured: true,

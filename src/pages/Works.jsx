@@ -15,6 +15,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/Works.css'
+import { scrollToTop } from '../components/Footer'
+import { graphicsProjects, webProjects } from '../data/projectsData'
 
 // ── Works data ──────────────────────────────
 // Each object describes one category card.
@@ -29,7 +31,7 @@ const WORKS_CATEGORIES = [
     description:
       'Websites, web apps, and digital experiences built with clean code and sharp UI. From landing pages to full-stack applications.',
     tags: ['React', 'JavaScript', 'CSS', 'UI/UX', 'Responsive', 'Tailwind', 'Python'],
-    stat: { number: '20+', label: 'Projects' },
+    stat: { number: `${webProjects.length}+`, label: 'Projects' },
     // SVG icon — a simple browser window shape
     icon: (
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -52,7 +54,7 @@ const WORKS_CATEGORIES = [
     description:
       'Brand identities, posters, illustrations, and visual design. Every pixel intentional — from concept to finished artwork.',
     tags: ['Branding', 'PhotoShop', 'Logo', 'Posters', 'Social Media Ads', 'Flyers'],
-    stat: { number: '15+', label: 'Designs' },
+    stat: { number: `${graphicsProjects.length}+`, label: 'Designs' },
     // SVG icon — a pen / design tool shape
     icon: (
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -102,6 +104,7 @@ function Works() {
               onMouseEnter={() => setHoveredId(category.id)}
               onMouseLeave={() => setHoveredId(null)}
               aria-label={`View ${category.title}`}
+              onClick={scrollToTop}
             >
               {/* ── Top row: label + arrow ── */}
               <div className="works-card__top">
@@ -149,7 +152,7 @@ function Works() {
         {/* ── Bottom note ── */}
         <p className="works-page__note">
           More work available on request —{' '}
-          <Link to="/contact" className="works-page__note-link">
+          <Link to="/contact" className="works-page__note-link" onClick={scrollToTop}>
             get in touch
           </Link>
           .

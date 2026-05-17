@@ -64,7 +64,7 @@ function Footer() {
                 The big "Hire Me" CTA.
                 Link goes to /contact page.
               */}
-                            <Link to="/contact" className="footer-cta__btn">
+                            <Link to="/contact" className="footer-cta__btn" onClick={scrollToTop}>
                                 Hire Me
                                 <span className="footer-cta__btn-arrow" aria-hidden="true">→</span>
                             </Link>
@@ -154,6 +154,7 @@ function Footer() {
                                     <a
                                         href={`https://mailto:${FOOTER_DATA.email}`}
                                         className="footer-contact__link"
+                                        target="_blank"
                                     >
                                         {FOOTER_DATA.email}
                                     </a>

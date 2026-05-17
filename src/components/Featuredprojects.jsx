@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom'
 import ProjectCard from './Projectcard'
 import { webProjects, graphicsProjects } from '../data/projectsData'
 import '../styles/Featuredprojects.css'
+import { scrollToTop } from './Footer'
 
 // ── Tab config ──────────────────────────────
 // Adding a new tab = add one object here.
@@ -65,7 +66,7 @@ function FeaturedProjects() {
           </div>
 
           {/* "See all" link — goes to the active tab's full page */}
-          <Link to={currentTab.route} className="featured__see-all">
+          <Link to={currentTab.route} className="featured__see-all" onClick={scrollToTop}>
             See all {currentTab.label}
             <span className="featured__see-all-arrow">→</span>
           </Link>
@@ -121,10 +122,10 @@ function FeaturedProjects() {
             Want to see all Projects?
           </p>
           <div className="featured__bottom-links">
-            <Link to="/web-projects" className="btn btn-secondary">
+            <Link to="/web-projects" className="btn btn-secondary" onClick={scrollToTop}>
               All Web Projects
             </Link>
-            <Link to="/graphics" className="btn btn-secondary">
+            <Link to="/graphics" className="btn btn-secondary"onClick={scrollToTop}>
               All Graphics Work
             </Link>
           </div>

@@ -10,6 +10,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/Hero.css'
+import { myData } from '../data/myData'
+import { scrollToTop } from './Footer'
 
 // ── Typing Animation Config ─────────────────
 // Add or change the roles shown in the animation
@@ -142,8 +144,7 @@ function Hero() {
 
                 {/* Short bio */}
                 <p className="hero__bio">
-                    I craft fast, clean websites and bold visual identities
-                    that make people stop scrolling.
+                    {myData.tagline}
                 </p>
 
                 {/* Skill tags */}
@@ -155,10 +156,10 @@ function Hero() {
 
                 {/* CTA Buttons */}
                 <div className="hero__buttons">
-                    <Link to="/works" className="btn btn-primary">
+                    <Link to="/works" className="btn btn-primary" onClick={scrollToTop}>
                         View My Work
                     </Link>
-                    <Link to="/contact" className="btn btn-secondary">
+                    <Link to="/contact" className="btn btn-secondary" onClick={scrollToTop}>
                         Hire Me
                     </Link>
                 </div>

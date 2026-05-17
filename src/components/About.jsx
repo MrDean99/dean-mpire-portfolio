@@ -11,6 +11,7 @@
 import { Link } from 'react-router-dom'
 import '../styles/About.css'
 import { myData } from '../data/myData'
+import { scrollToTop } from './Footer'
 
 function About() {
   return (
@@ -74,7 +75,7 @@ function About() {
               Link is like <a href> but it navigates without
               reloading the page (React Router magic).
             */}
-            <Link to="/profile" className="btn btn-primary about__cta">
+            <Link to="/profile" className="btn btn-primary about__cta" onClick={scrollToTop}>
               View Full Profile
               {/* Arrow icon using a unicode character */}
               <span className="about__cta-arrow" aria-hidden="true">→</span>
