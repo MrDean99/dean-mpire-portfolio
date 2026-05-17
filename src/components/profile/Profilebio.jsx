@@ -6,7 +6,7 @@
 // ============================================
 
 import { myData } from '../../data/myData'
-import '../../styles/profile/Profilebio.css'
+import '../../styles/profile/profilebio.css'
 
 // ── ✏️ Highlight chips — things about you ────
 const HIGHLIGHTS = [
