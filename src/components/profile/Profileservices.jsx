@@ -13,7 +13,7 @@ const SERVICES_DATA = [
   {
     id: 'svc-01',
     icon: '💻',
-    title: 'Web Development',
+    title: 'Front End Design',
     description:
       'Clean, fast, responsive websites and web applications built from scratch — or on top of existing platforms.',
     deliverables: [
@@ -28,6 +28,22 @@ const SERVICES_DATA = [
   },
   {
     id: 'svc-02',
+    icon: '</>',
+    title: 'Back-End Development',
+    description:
+      'APIs, Databases, Auth, Payments, Cloud Deployments, Hosting - secure, fast, solid and architecture all built to handle real traffic without breaking',
+    deliverables: [
+      'Responsive design (mobile + desktop)',
+      'Django / Nodejs / Python / PostgreSQL / Stripe / WebSockets',
+      'REST API integration',
+      'Performance optimisation',
+      'Deployment & hosting setup',
+    ],
+    startingPrice: 'From $500',
+    accent: 'var(--color-accent)',  // amber
+  },
+  {
+    id: 'svc-03',
     icon: '🎨',
     title: 'Brand Identity Design',
     description:

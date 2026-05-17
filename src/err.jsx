@@ -5,3 +5,4 @@
 // SWITCH TO LIGHT MODE
 // ADD PRELOADER
 // REMOVE EMOJIS
+// animation on view
