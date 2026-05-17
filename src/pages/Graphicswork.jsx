@@ -4,7 +4,7 @@
 
 import ProjectCard from '../components/Projectcard'
 import { graphicsProjects } from '../data/projectsData'
-import '../styles/GraphicsWork.css'
+import '../styles/Graphicswork.css'
 
 function GraphicsWork() {
   return (
