@@ -16,10 +16,13 @@
   --color-bg-card:     #111111;   /* card / section backgrounds */
   --color-bg-hover:    #1a1a1a;   /* hover states */
   --color-border:      #222222;   /* subtle borders */
-  --color-accent:      #f5a623;   /* amber — the pop color */
-  --color-accent-dim:  #c07d10;   /* darker amber for hover */
+  /* --color-accent:      #f5a623;   amber — the pop color */
+  /* --color-accent-dim:  #c07d10;   darker amber for hover */
+  --color-accent:      #fc6e00;   /* amber — the pop color */
+  --color-accent-dim:  #a54801;   /* darker amber for hover */
   --color-text:        #f0ede8;   /* main text (warm off-white) */
-  --color-text-muted:  #888888;   /* secondary / caption text */
+  /* --color-text-muted:  #888888;   secondary / caption text */
+  --color-text-muted:  #e6e9d3;   /* secondary / caption text */
   --color-text-faint:  #444444;   /* very subtle text */
 
   /* ── Glass tokens — used by ScrollToTop & any glassmorphism element ──
@@ -44,7 +47,8 @@
   --space-2xl:  128px;
 
   /* Border radius */
-  --radius-sm:  4px;
+  /* --radius-sm:  4px; */
+  --radius-sm:  100px;
   --radius-md:  8px;
   --radius-lg:  16px;
 
@@ -103,6 +107,8 @@ body {
   font-size: 16px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased; /* crisper text on Mac */
+  /* background-size: 70px 70px; */
+  /* background-image: linear-gradient(to right, rgba(255, 255, 255, 0.075) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.075) 1px, transparent 1px); */
 }
 
 /* Links */
