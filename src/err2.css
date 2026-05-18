@@ -1,0 +1,186 @@
+/* ============================================
+   ScrollToTop.css
+   ============================================
+   
+   HOW THE ANIMATION WORKS:
+   
+   The button ALWAYS exists in the DOM.
+   By default it sits BELOW the viewport:
+     transform: translateY(80px)   ← pushed down
+     opacity: 0                    ← invisible
+   
+   When .scroll-top--visible is added by React,
+   CSS transitions it back to its natural position:
+     transform: translateY(0)      ← slides up
+     opacity: 1                    ← fades in
+   
+   This is called a "mount animation" pattern —
+   the element is always there, CSS controls visibility.
+   ============================================ */
+
+/* ── Base button ─────────────────────────── */
+.scroll-top {
+  /* Fixed to bottom-center of the screen */
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px); /* centered + hidden below */
+  z-index: 998;  /* just below floating buttons (999) */
+
+  /* Pill shape */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+
+  /* ── Glassmorphism effect ──
+     This is the "frosted glass" look:
+     - Semi-transparent dark background
+     - backdrop-filter: blur() — blurs content BEHIND the element
+     - border with low-opacity white — catches light
+     - box-shadow — soft glow beneath
+  */
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);  /* Safari */
+  border: 1px solid rgba(245, 166, 35, 0.2);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05); /* subtle top shine */
+
+  /* Text style */
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(240, 237, 232, 0.85);
+
+  /* Transition everything smoothly:
+     - transform: the slide-up animation + hover lift
+     - opacity:   the fade in/out
+     - box-shadow, border-color: hover glow changes
+  */
+  transition:
+    transform  0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity    0.35s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+
+  /* Not clickable when invisible */
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Visible state — slides up into view ── */
+/*
+  When React adds this class, the transform changes
+  from translateY(80px) → translateY(0).
+  The cubic-bezier gives a bouncy spring feel.
+  
+  NOTE: translateX(-50%) must stay on both states
+  to keep the button horizontally centered.
+*/
+.scroll-top--visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: all;  /* clickable again */
+}
+
+/* ── Hover effect — lift + amber glow ───── */
+.scroll-top:hover {
+  /* Override the visible transform — add a Y lift on top */
+  transform: translateX(-50%) translateY(-4px) !important;
+  background: rgba(245, 166, 35, 0.15);
+  border-color: rgba(245, 166, 35, 0.6);
+  box-shadow:
+    0 8px 32px rgba(245, 166, 35, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #f5a623;
+}
+
+/* ── Active (click) — press down ─────────── */
+.scroll-top:active {
+  transform: translateX(-50%) translateY(-1px) !important;
+  box-shadow:
+    0 2px 12px rgba(245, 166, 35, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ── Icon ────────────────────────────────── */
+.scroll-top__icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.scroll-top__icon svg {
+  width: 100%;
+  height: 100%;
+  /* Arrow bounces up on hover */
+  transition: transform 0.25s ease;
+}
+
+.scroll-top:hover .scroll-top__icon svg {
+  transform: translateY(-2px);
+}
+
+/* ── Label ───────────────────────────────── */
+.scroll-top__label {
+  white-space: nowrap;
+  /* Smooth collapse on small screens */
+  transition: max-width 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  max-width: 120px;
+  overflow: hidden;
+}
+
+/* ── Mobile — icon only, circle shape ───── */
+/*
+  On small screens:
+  - Collapse the text label → max-width: 0
+  - Remove left/right padding so pill becomes a circle
+  - Make width = height for perfect circle
+*/
+@media (max-width: 600px) {
+  .scroll-top {
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    /* Override the centering transform for the hidden state */
+    transform: translateX(-50%) translateY(80px);
+    justify-content: center;
+  }
+
+  .scroll-top--visible {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .scroll-top:hover {
+    transform: translateX(-50%) translateY(-4px) !important;
+  }
+
+  .scroll-top:active {
+    transform: translateX(-50%) translateY(-1px) !important;
+  }
+
+  /* Hide text label */
+  .scroll-top__label {
+    max-width: 0;
+    opacity: 0;
+    padding: 0;
+    /* display: hidden !important; */
+  }
+
+  /* Slightly bigger icon when it's alone */
+  .scroll-top__icon {
+    width: 20px;
+    height: 20px;
+  }
+}

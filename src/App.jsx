@@ -25,6 +25,7 @@ import Works from './pages/Works'
 import './styles/Global.css'
 import Todaydate from './components/Todaydate'
 import FloatingButtons from './components/Floatingbuttons'
+import ScrollToTop from './components/Scrolltotop'
 
 
 
@@ -61,6 +62,8 @@ function App() {
 
       {/* Floating contact buttons — always visible, bottom-right */}
       <FloatingButtons />
+
+      <ScrollToTop />
 
     </BrowserRouter>
   )

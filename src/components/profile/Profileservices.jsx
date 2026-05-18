@@ -40,7 +40,7 @@ const SERVICES_DATA = [
       'Deployment & hosting setup',
     ],
     startingPrice: 'From $500',
-    accent: 'var(--color-accent)',  // amber
+    accent: '#ff2525',  // amber
   },
   {
     id: 'svc-03',

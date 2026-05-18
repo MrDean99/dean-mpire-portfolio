@@ -1,0 +1,231 @@
+/* ============================================
+   ScrollToTop.css
+   ============================================
+   Uses ONLY CSS variables from global.css.
+   
+   TO SWITCH TO LIGHT MODE — add this to index.html:
+     <html data-theme="light">
+   
+   The [data-theme="light"] block in global.css
+   swaps --glass-bg, --glass-border, --glass-shine,
+   --glass-shadow, and all --color-* tokens.
+   This file never needs to change for light mode.
+   ============================================
+
+   HOW THE ANIMATION WORKS:
+
+   The button always exists in the DOM.
+   It starts pushed below the viewport with
+   translateY(80px) and opacity: 0 — invisible.
+
+   When React adds .scroll-top--visible,
+   the transition fires and it slides up into place.
+   The cubic-bezier spring curve gives it a bounce.
+
+   translateX(-50%) keeps it centered horizontally.
+   Both visible and hidden states must include it,
+   otherwise the horizontal centering breaks mid-animation.
+   ============================================ */
+
+
+/* ── Base button (hidden by default) ────── */
+.scroll-top {
+  /* Fixed to the bottom-center of the viewport */
+  position: fixed;
+  bottom: var(--space-lg);         /* 32px from bottom */
+  left: 50%;
+
+  /*
+    Two transforms combined:
+    translateX(-50%)  → centers the button horizontally
+    translateY(80px)  → pushes it below the visible area (hidden)
+
+    When .scroll-top--visible is added, translateY becomes 0
+    and it slides up into view.
+  */
+  transform: translateX(-50%) translateY(80px);
+
+  /* Sits above content, below floating buttons (z-index: 999) */
+  z-index: 998;
+
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);            /* 8px gap between icon and label */
+  padding: 12px 24px;
+  border-radius: 100px;            /* pill shape */
+
+  /* ── Glassmorphism ───────────────────────
+     These four properties together create the
+     "frosted glass" effect. All values come from
+     the --glass-* tokens in global.css so light
+     mode works without touching this file.
+  */
+  background:         var(--glass-bg);
+  backdrop-filter:    blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));   /* Safari */
+  border: 1px solid   var(--glass-border);
+  box-shadow:
+    0 4px 24px        var(--glass-shadow),
+    inset 0 1px 0     var(--glass-shine);             /* subtle top-edge shine */
+
+  /* Typography */
+  font-family:  var(--font-body);
+  font-size:    12px;
+  font-weight:  500;
+  letter-spacing: 0.5px;
+  color:        var(--color-text-muted);              /* muted by default */
+
+  /* Button reset */
+  cursor: pointer;
+  border-style: solid;                /* override browser button default */
+  user-select: none;
+  white-space: nowrap;
+
+  /* Hidden + not clickable when not visible */
+  opacity: 0;
+  pointer-events: none;
+  border: 1px solid white;
+
+  /*
+    Animate these specific properties:
+    - transform   → the slide-up motion (spring bounce)
+    - opacity     → the fade in
+    - box-shadow  → smooth glow change on hover
+    - border-color→ amber border on hover
+    - background  → tint change on hover
+    - color       → text colour on hover
+  */
+  transition:
+    transform     0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity       0.35s ease,
+    box-shadow    var(--transition),
+    border-color  var(--transition),
+    background    var(--transition),
+    color         var(--transition);
+}
+
+
+/* ── Visible state — slides up into view ── */
+.scroll-top--visible {
+  /*
+    translateX(-50%) MUST stay here —
+    removing it would snap the button to the left edge.
+    translateY(0) cancels the 80px downward push.
+  */
+  transform:     translateX(-50%) translateY(0);
+  opacity:       1;
+  pointer-events: all;             /* re-enable click */
+}
+
+
+/* ── Hover — lift + amber glass glow ────── */
+.scroll-top:hover {
+  /*
+    !important needed here because .scroll-top--visible
+    already sets transform. Without it, hover would be
+    overridden and the lift effect would not fire.
+  */
+  transform:    translateX(-50%) translateY(-4px) !important;
+  color:        var(--color-accent);
+  background:   rgba(var(--color-accent), 0.08);
+
+  /*
+    We can't use rgba() directly with a CSS variable that
+    contains a hex code, so we build the tinted glass
+    background manually here using the accent color values.
+    This is the one place that knows the amber hex value.
+  */
+  background:   rgba(245, 166, 35, 0.1);
+  border-color: var(--color-accent);
+  box-shadow:
+    0 8px 32px   rgba(245, 166, 35, 0.18),        /* amber glow */
+    0 2px 8px    var(--glass-shadow),              /* base shadow */
+    inset 0 1px 0 var(--glass-shine);              /* top shine */
+}
+
+
+/* ── Active — press-down micro-interaction ── */
+.scroll-top:active {
+  transform:    translateX(-50%) translateY(-1px) !important;
+  box-shadow:
+    0 2px 12px  rgba(245, 166, 35, 0.12),
+    inset 0 1px 0 var(--glass-shine);
+}
+
+
+/* ── Focus ring — keyboard accessibility ── */
+.scroll-top:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+
+/* ── Icon ────────────────────────────────── */
+.scroll-top__icon {
+  width:  18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;                 /* never shrink the icon */
+  color: var(--color-accent);     /* always amber regardless of label colour */
+}
+
+.scroll-top__icon svg {
+  width:  100%;
+  height: 100%;
+  transition: transform var(--transition);
+}
+
+/* Arrow nudges upward on hover */
+.scroll-top:hover .scroll-top__icon svg {
+  transform: translateY(-2px);
+}
+
+
+/* ── Label ───────────────────────────────── */
+.scroll-top__label {
+  overflow: hidden;
+  max-width: 140px;
+  /* Smooth collapse when switching to mobile */
+  transition:
+    max-width   var(--transition),
+    opacity     var(--transition),
+    padding     var(--transition);
+}
+
+
+/* ════════════════════════════════════════════
+   MOBILE — icon-only circle
+   (matches floating buttons on small screens)
+════════════════════════════════════════════ */
+@media (max-width: 600px) {
+
+  .scroll-top {
+    /*
+      Remove padding entirely — width/height will
+      size the circle. Use --space-md (16px) for
+      bottom offset on small screens.
+    */
+    padding:  0;
+    width:    48px;
+    height:   48px;
+    bottom:   var(--space-md);
+    justify-content: center;
+  }
+
+  /* Collapse label — max-width: 0 hides it without display:none,
+     which keeps the transition smooth */
+  .scroll-top__label {
+    max-width: 0;
+    opacity:   0;
+    padding:   0;
+  }
+
+  /* Slightly larger icon when it's alone */
+  .scroll-top__icon {
+    width:  20px;
+    height: 20px;
+  }
+}
