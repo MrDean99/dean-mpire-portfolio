@@ -50,7 +50,6 @@ function ProfileBio() {
             ✏️ REPLACE EVERYTHING INSIDE .profile-bio__text
             with your actual bio. Add as many <p> tags as you want.
           */}
-          <Animate animation="slide-left">
             <div className="profile-bio__text">
               <p>
                 Hi, I'm <strong>{myData.name}</strong> — a {myData.title} with over {myData.expyrs} years of experience building digital products
@@ -76,8 +75,6 @@ function ProfileBio() {
                 love to hear about it.
               </p>
             </div>
-          </Animate>
-
         </div>
       </div>
     </section>

@@ -87,7 +87,6 @@ function About() {
           </div>
 
           {/* ── RIGHT — Photo block ── */}
-          <Animate animation="bounce" >
           <div className="about__photo-wrap">
 
             {/* Decorative frame corners */}
@@ -121,8 +120,6 @@ function About() {
             </Link>
 
           </div>
-          </Animate>
-
         </div>
       </div>
     </section>

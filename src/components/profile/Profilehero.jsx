@@ -45,7 +45,7 @@ function ProfileHero() {
         <div className="profile-hero__inner">
 
           {/* ── LEFT: Photo ── */}
-          <Animate animation="zoom-out">
+          <Animate animation="zoom-in">
             <div className="profile-hero__photo-wrap">
 
               {/* Corner brackets */}
