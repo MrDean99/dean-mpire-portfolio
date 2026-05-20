@@ -20,6 +20,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { skillCategories } from '../data/skillsData'
 import '../styles/Skills.css'
+import Animate from './Animate'
 
 // ── Total number of dashes per bar ──────────
 const TOTAL_DASHES = 10
@@ -28,53 +29,55 @@ const TOTAL_DASHES = 10
 // Extracted as its own mini-component for clarity
 function SkillRow({ skill, animate }) {
   return (
-    <div className="skill-row">
+    <Animate animation="zoom-in" >
+      <div className="skill-row">
 
-      {/* Icon box — bg and text color come from data */}
-      <div
-        className="skill-row__icon"
-        style={{
-          backgroundColor: skill.iconBg,
-          color: skill.iconColor,
-        }}
-        aria-hidden="true"
-      >
-        {skill.iconText}
-      </div>
+        {/* Icon box — bg and text color come from data */}
+        <div
+          className="skill-row__icon"
+          style={{
+            backgroundColor: skill.iconBg,
+            color: skill.iconColor,
+          }}
+          aria-hidden="true"
+        >
+          {skill.iconText}
+        </div>
 
-      {/* Skill name */}
-      <span className="skill-row__name">{skill.name}</span>
+        {/* Skill name */}
+        <span className="skill-row__name">{skill.name}</span>
 
-      {/* Dashed progress bar */}
-      {/*
+        {/* Dashed progress bar */}
+        {/*
         We create an array of TOTAL_DASHES items (10 dashes).
         Each dash is either "filled" (amber) or "empty" (dark)
         depending on whether its index is less than skill.level.
         
         Example: level = 7 → dashes 0–6 are filled, 7–9 are empty
       */}
-      <div
-        className="skill-row__bar"
-        role="progressbar"
-        aria-valuenow={skill.level}
-        aria-valuemin={0}
-        aria-valuemax={TOTAL_DASHES}
-        aria-label={`${skill.name} proficiency: ${skill.level} out of ${TOTAL_DASHES}`}
-      >
-        {Array.from({ length: TOTAL_DASHES }, (_, i) => (
-          <span
-            key={i}
-            className={`skill-row__dash ${i < skill.level ? 'skill-row__dash--filled' : 'skill-row__dash--empty'}`}
-            style={{
-              // Stagger the animation: each dash animates slightly later
-              // Only animate when the section is visible (animate prop)
-              transitionDelay: animate ? `${i * 60}ms` : '0ms',
-            }}
-          />
-        ))}
-      </div>
+        <div
+          className="skill-row__bar"
+          role="progressbar"
+          aria-valuenow={skill.level}
+          aria-valuemin={0}
+          aria-valuemax={TOTAL_DASHES}
+          aria-label={`${skill.name} proficiency: ${skill.level} out of ${TOTAL_DASHES}`}
+        >
+          {Array.from({ length: TOTAL_DASHES }, (_, i) => (
+            <span
+              key={i}
+              className={`skill-row__dash ${i < skill.level ? 'skill-row__dash--filled' : 'skill-row__dash--empty'}`}
+              style={{
+                // Stagger the animation: each dash animates slightly later
+                // Only animate when the section is visible (animate prop)
+                transitionDelay: animate ? `${i * 60}ms` : '0ms',
+              }}
+            />
+          ))}
+        </div>
 
-    </div>
+      </div>
+    </Animate>
   )
 }
 

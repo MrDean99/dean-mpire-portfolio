@@ -29,11 +29,13 @@ function About() {
             <p className="section-label">About Me</p>
 
             {/* Heading — replace "Your Name" when ready */}
-            <h2 className="about__heading">
-              Hi, I'm <span className="accent">{myData.name}</span> —<br />
-              I build things for<br />
-              the web <span className="about__heading-amp">&</span> screen.
-            </h2>
+            <Animate animation="zoom-in" >
+              <h2 className="about__heading">
+                Hi, I'm <span className="accent">{myData.name}</span> —<br />
+                I build things for<br />
+                the web <span className="about__heading-amp">&</span> screen.
+              </h2>
+            </Animate>
 
             {/* Bio paragraphs — replace with your real bio later */}
             <p className="about__bio">
@@ -54,22 +56,24 @@ function About() {
               These are small numbers that highlight your experience.
               Update the numbers and labels to match your real stats.
             */}
-            <div className="about__stats">
-              <div className="about__stat">
-                <span className="about__stat-number">{myData.expyrs}<span className="accent">+</span></span>
-                <span className="about__stat-label">Years Experience</span>
+            <Animate animation="zoom-in" >
+              <div className="about__stats">
+                <div className="about__stat">
+                  <span className="about__stat-number">{myData.expyrs}<span className="accent">+</span></span>
+                  <span className="about__stat-label">Years Experience</span>
+                </div>
+                <div className="about__stat-divider" aria-hidden="true" />
+                <div className="about__stat">
+                  <span className="about__stat-number">{myData.totalProjects}<span className="accent">+</span></span>
+                  <span className="about__stat-label">Projects Done</span>
+                </div>
+                <div className="about__stat-divider" aria-hidden="true" />
+                <div className="about__stat">
+                  <span className="about__stat-number">{myData.clientsnum}<span className="accent">+</span></span>
+                  <span className="about__stat-label">Happy Clients</span>
+                </div>
               </div>
-              <div className="about__stat-divider" aria-hidden="true" />
-              <div className="about__stat">
-                <span className="about__stat-number">{myData.totalProjects}<span className="accent">+</span></span>
-                <span className="about__stat-label">Projects Done</span>
-              </div>
-              <div className="about__stat-divider" aria-hidden="true" />
-              <div className="about__stat">
-                <span className="about__stat-number">{myData.clientsnum}<span className="accent">+</span></span>
-                <span className="about__stat-label">Happy Clients</span>
-              </div>
-            </div>
+            </Animate>
 
             {/* ── CTA Button → Profile Page ── */}
             {/*
@@ -77,11 +81,11 @@ function About() {
               reloading the page (React Router magic).
             */}
             <Animate animation="slide-right" >
-            <Link to="/profile" className="btn btn-primary about__cta" onClick={scrollToTop}>
-              View Full Profile
-              {/* Arrow icon using a unicode character */}
-              <span className="about__cta-arrow" aria-hidden="true">→</span>
-            </Link>
+              <Link to="/profile" className="btn btn-primary about__cta" onClick={scrollToTop}>
+                View Full Profile
+                {/* Arrow icon using a unicode character */}
+                <span className="about__cta-arrow" aria-hidden="true">→</span>
+              </Link>
             </Animate>
 
           </div>

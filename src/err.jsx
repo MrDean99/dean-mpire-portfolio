@@ -1,6 +1,6 @@
 // REMAINING TO BULD
 // HIRE ME CALL TO ACTIOB - DEFINE THE FUNCTIONALI
-// FORM CONTACTS SEND TO WHERE
 // SWITCH TO LIGHT MODE
 // REMOVE EMOJIS
+// email floating btn not working / same with footer email link
 

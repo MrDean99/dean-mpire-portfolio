@@ -26,8 +26,8 @@ import { useState, useEffect } from 'react'
 import '../styles/Preloader.css'
 
 // ── ✏️ ADJUST THESE ──────────────────────────
-const DISPLAY_DURATION = 2000  // ms the preloader stays fully visible
-const FADE_DURATION    = 400   // ms the fade-out animation takes
+const DISPLAY_DURATION = 2300  // ms the preloader stays fully visible
+const FADE_DURATION    = 1000   // ms the fade-out animation takes
 
 // ────────────────────────────────────────────
 function Preloader() {

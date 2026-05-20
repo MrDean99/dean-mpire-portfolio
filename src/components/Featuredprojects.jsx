@@ -21,22 +21,23 @@ import ProjectCard from './Projectcard'
 import { webProjects, graphicsProjects } from '../data/projectsData'
 import '../styles/Featuredprojects.css'
 import { scrollToTop } from './Footer'
+import Animate from './Animate'
 
 // ── Tab config ──────────────────────────────
 // Adding a new tab = add one object here.
 const TABS = [
   {
-    id:       'web',
-    label:    'Web Projects',
-    data:     webProjects,
-    route:    '/web-projects',
+    id: 'web',
+    label: 'Web Projects',
+    data: webProjects,
+    route: '/web-projects',
     category: 'web',
   },
   {
-    id:       'graphics',
-    label:    'Graphics Work',
-    data:     graphicsProjects,
-    route:    '/graphics',
+    id: 'graphics',
+    label: 'Graphics Work',
+    data: graphicsProjects,
+    route: '/graphics',
     category: 'graphics',
   },
 ]
@@ -117,19 +118,21 @@ function FeaturedProjects() {
         </div>
 
         {/* ── Bottom CTA row ── */}
-        <div className="featured__bottom">
-          <p className="featured__bottom-text">
-            Want to see all Projects?
-          </p>
-          <div className="featured__bottom-links">
-            <Link to="/web-projects" className="btn btn-secondary" onClick={scrollToTop}>
-              All Web Projects
-            </Link>
-            <Link to="/graphics" className="btn btn-secondary"onClick={scrollToTop}>
-              All Graphics Work
-            </Link>
+        <Animate animation="zoom-in" >
+          <div className="featured__bottom">
+            <p className="featured__bottom-text">
+              Want to see all Projects?
+            </p>
+            <div className="featured__bottom-links">
+              <Link to="/web-projects" className="btn btn-secondary" onClick={scrollToTop}>
+                All Web Projects
+              </Link>
+              <Link to="/graphics" className="btn btn-secondary" onClick={scrollToTop}>
+                All Graphics Work
+              </Link>
+            </div>
           </div>
-        </div>
+        </Animate>
 
       </div>
     </section>

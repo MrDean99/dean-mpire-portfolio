@@ -58,7 +58,7 @@ import { useScrollAnimation } from '../hooks/Usescrollanimation'
 function Animate({
   children,
   animation  = 'fade-up',   // default animation
-  delay      = 150,
+  delay      = 250,
   duration   = null,         // null = use CSS default
   threshold  = 0.50,
   once       = false,

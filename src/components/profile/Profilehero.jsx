@@ -93,24 +93,26 @@ function ProfileHero() {
             <p className="profile-hero__tagline">{PROFILE.tagline}</p>
 
             {/* Stats row */}
-            <div className="profile-hero__stats">
-              {PROFILE.stats.map((stat, i) => (
-                <>
-                  {/* Divider between stats (not before first) */}
-                  {i > 0 && (
-                    <div key={`div-${i}`} className="profile-hero__stat-div" aria-hidden="true" />
-                  )}
-                  <div key={stat.label} className="profile-hero__stat">
-                    <span className="profile-hero__stat-number">
-                      {stat.number}
-                    </span>
-                    <span className="profile-hero__stat-label">
-                      {stat.label}
-                    </span>
-                  </div>
-                </>
-              ))}
-            </div>
+            <Animate animation="zoom-in">
+              <div className="profile-hero__stats">
+                {PROFILE.stats.map((stat, i) => (
+                  <>
+                    {/* Divider between stats (not before first) */}
+                    {i > 0 && (
+                      <div key={`div-${i}`} className="profile-hero__stat-div" aria-hidden="true" />
+                    )}
+                    <div key={stat.label} className="profile-hero__stat">
+                      <span className="profile-hero__stat-number">
+                        {stat.number}
+                      </span>
+                      <span className="profile-hero__stat-label">
+                        {stat.label}
+                      </span>
+                    </div>
+                  </>
+                ))}
+              </div>
+            </Animate>
 
             {/* Buttons row */}
             <div className="profile-hero__actions">
