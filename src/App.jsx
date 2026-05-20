@@ -26,6 +26,7 @@ import './styles/Global.css'
 import Todaydate from './components/Todaydate'
 import FloatingButtons from './components/Floatingbuttons'
 import ScrollToTop from './components/Scrolltotop'
+import Preloader from './components/Preloader'
 
 
 
@@ -38,6 +39,8 @@ function App() {
   return (
     // BrowserRouter enables URL-based navigation
     <BrowserRouter>
+
+      <Preloader />
 
       {/* Navbar appears on EVERY page */}
       <Navbar />

@@ -12,6 +12,7 @@
 
 import { CONTACT_INFO_CARDS, SOCIALS } from '../data/myData'
 import '../styles/Contactinfo.css'
+import Animate from './Animate'
 
 // ── UPDATE YOUR DETAILS HERE ─────────────────
 const INFO_CARDS = CONTACT_INFO_CARDS
@@ -40,46 +41,50 @@ function ContactInfo() {
         We loop over INFO_CARDS and render each one.
         iconBg and iconColor are set inline from the data above.
       */}
-            <div className="contact-info__cards">
-                {INFO_CARDS.map((card) => (
-                    <div key={card.id} className="contact-info__card">
-                        {/* Icon circle */}
-                        <div
-                            className="contact-info__card-icon"
-                            style={{
-                                backgroundColor: card.iconBg,
-                                color: card.iconColor,
-                            }}
-                        >
-                            {card.icon}
+            <Animate animation="zoom-in">
+                <div className="contact-info__cards">
+                    {INFO_CARDS.map((card) => (
+                        <div key={card.id} className="contact-info__card">
+                            {/* Icon circle */}
+                            <div
+                                className="contact-info__card-icon"
+                                style={{
+                                    backgroundColor: card.iconBg,
+                                    color: card.iconColor,
+                                }}
+                            >
+                                {card.icon}
+                            </div>
+                            {/* Text */}
+                            <div className="contact-info__card-text">
+                                <span className="contact-info__card-label">{card.label}</span>
+                                <span className="contact-info__card-value">{card.value}</span>
+                            </div>
                         </div>
-                        {/* Text */}
-                        <div className="contact-info__card-text">
-                            <span className="contact-info__card-label">{card.label}</span>
-                            <span className="contact-info__card-value">{card.value}</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            </Animate>
 
             {/* ── Social media row ── */}
             <div className="contact-info__social">
                 <span className="contact-info__social-label">Social Media</span>
-                <div className="contact-info__social-icons">
-                    {SOCIALS.map((s) => (
-                        <a
-                            key={s.id}
-                            href={s.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="contact-info__social-btn"
-                            aria-label={s.label}
-                            title={s.label}
-                        >
-                            {s.icon}
-                        </a>
-                    ))}
-                </div>
+                <Animate animation="zoom-in">
+                    <div className="contact-info__social-icons">
+                        {SOCIALS.map((s) => (
+                            <a
+                                key={s.id}
+                                href={s.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="contact-info__social-btn"
+                                aria-label={s.label}
+                                title={s.label}
+                            >
+                                {s.icon}
+                            </a>
+                        ))}
+                    </div>
+                </Animate>
             </div>
 
         </div>

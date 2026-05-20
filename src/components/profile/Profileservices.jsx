@@ -7,6 +7,7 @@
 // ============================================
 
 import '../../styles/profile/Profileservices.css'
+import Animate from '../Animate'
 
 // ── ✏️ YOUR SERVICES — edit/add/remove ───────
 const SERVICES_DATA = [
@@ -110,45 +111,47 @@ function ProfileServices() {
 
         <div className="profile-services__grid">
           {SERVICES_DATA.map((svc) => (
-            <article
-              key={svc.id}
-              className="svc-card"
-              style={{ '--svc-accent': svc.accent }}
-            >
-              {/* Icon */}
-              <div className="svc-card__icon-wrap">
-                <span className="svc-card__icon" aria-hidden="true">
-                  {svc.icon}
-                </span>
-              </div>
+            <Animate>
+              <article
+                key={svc.id}
+                className="svc-card"
+                style={{ '--svc-accent': svc.accent }}
+              >
+                {/* Icon */}
+                <div className="svc-card__icon-wrap">
+                  <span className="svc-card__icon" aria-hidden="true">
+                    {svc.icon}
+                  </span>
+                </div>
 
-              {/* Title */}
-              <h3 className="svc-card__title">{svc.title}</h3>
+                {/* Title */}
+                <h3 className="svc-card__title">{svc.title}</h3>
 
-              {/* Description */}
-              <p className="svc-card__description">{svc.description}</p>
+                {/* Description */}
+                <p className="svc-card__description">{svc.description}</p>
 
-              {/* Deliverables list */}
-              <ul className="svc-card__list">
-                {svc.deliverables.map((item) => (
-                  <li key={item} className="svc-card__list-item">
-                    {/* Amber check dot */}
-                    <span className="svc-card__list-dot" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+                {/* Deliverables list */}
+                <ul className="svc-card__list">
+                  {svc.deliverables.map((item) => (
+                    <li key={item} className="svc-card__list-item">
+                      {/* Amber check dot */}
+                      <span className="svc-card__list-dot" aria-hidden="true" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Footer: starting price */}
-              {/* <div className="svc-card__footer">
+                {/* Footer: starting price */}
+                {/* <div className="svc-card__footer">
                 <span className="svc-card__price">{svc.startingPrice}</span>
                 <span className="svc-card__enquire">Get a quote →</span>
               </div> */}
 
-              {/* Top accent border */}
-              <div className="svc-card__top-border" aria-hidden="true" />
+                {/* Top accent border */}
+                <div className="svc-card__top-border" aria-hidden="true" />
 
-            </article>
+              </article>
+            </Animate>
           ))}
         </div>
 

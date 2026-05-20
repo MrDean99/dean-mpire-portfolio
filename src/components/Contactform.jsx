@@ -16,6 +16,7 @@
 
 import { useState } from 'react'
 import '../styles/Contactform.css'
+import Animate from './Animate'
 
 // ── Initial empty form state ─────────────────
 // Defined outside component so it's never recreated
@@ -79,156 +80,184 @@ function ContactForm() {
     // e.g. EmailJS, Formspree, or your own API
     setStatus('sending')
     await new Promise((r) => setTimeout(r, 1500)) // fake 1.5s delay
-    setStatus('sent')
-    setFields(EMPTY_FORM)  // clear the form
+// custon form spree from chat gpt
+    try {
+      const response = await fetch("https://formspree.io/f/mjgzgadb", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(fields)
+      });
+
+      if (response.ok) {
+        setStatus('sent')
+        setFields(EMPTY_FORM);
+      } else {
+        alert("Something went wrong");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error sending message");
+    }
+
+    // setStatus('sent')
+    // setFields(EMPTY_FORM)  // clear the form
   }
 
   // ── Success state ───────────────────────────
   if (status === 'sent') {
     return (
-      <div className="contact-form contact-form--success">
-        <div className="contact-form__success-icon" aria-hidden="true">✓</div>
-        <h3 className="contact-form__success-title">Message Sent!</h3>
-        <p className="contact-form__success-text">
-          Thanks for reaching out. I'll get back to you within 24 hours.
-        </p>
-        <button
-          className="btn btn-primary contact-form__btn"
-          onClick={() => setStatus(null)}
-        >
-          Send Another
-        </button>
-      </div>
+      <Animate animation="zoom-in">
+        <div className="contact-form contact-form--success">
+          <div className="contact-form__success-icon" aria-hidden="true">✓</div>
+          <h3 className="contact-form__success-title">Message Sent!</h3>
+          <p className="contact-form__success-text">
+            Thanks for reaching out. I'll get back to you within 24 hours.
+          </p>
+          <button
+            className="btn btn-primary contact-form__btn"
+            onClick={() => setStatus(null)}
+          >
+            Send Another
+          </button>
+        </div>
+      </Animate>
     )
   }
 
   // ── Form ────────────────────────────────────
   return (
-    <form className="contact-form" onSubmit={handleSubmit} noValidate>
+    <Animate animation="zoom-in">
+      <form 
+        className="contact-form" 
+        onSubmit={handleSubmit} 
+        noValidate>
 
-      <h3 className="contact-form__heading">Leave your message</h3>
+        <h3 className="contact-form__heading">Leave your message</h3>
 
-      {/* ── Row: Name + Email side by side ── */}
-      <div className="contact-form__row">
+        {/* ── Row: Name + Email side by side ── */}
+        <div className="contact-form__row">
 
+          <div className="contact-form__field">
+            <label className="contact-form__label" htmlFor="cf-name">
+              Name
+            </label>
+            <input
+              id="cf-name"
+              className={`contact-form__input ${errors.name ? 'contact-form__input--error' : ''}`}
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={fields.name}
+              onChange={handleChange}
+              autoComplete="name"
+            />
+            {errors.name && (
+              <span className="contact-form__error">{errors.name}</span>
+            )}
+          </div>
+
+          <div className="contact-form__field">
+            <label className="contact-form__label" htmlFor="cf-email">
+              Email
+            </label>
+            <input
+              id="cf-email"
+              className={`contact-form__input ${errors.email ? 'contact-form__input--error' : ''}`}
+              type="email"
+              name="email"
+              placeholder="your@email.com"
+              value={fields.email}
+              onChange={handleChange}
+              autoComplete="email"
+            />
+            {errors.email && (
+              <span className="contact-form__error">{errors.email}</span>
+            )}
+          </div>
+
+        </div>
+
+        {/* ── Subject ── */}
         <div className="contact-form__field">
-          <label className="contact-form__label" htmlFor="cf-name">
-            Name
+          <label className="contact-form__label" htmlFor="cf-subject">
+            Subject
           </label>
           <input
-            id="cf-name"
-            className={`contact-form__input ${errors.name ? 'contact-form__input--error' : ''}`}
+            id="cf-subject"
+            className={`contact-form__input ${errors.subject ? 'contact-form__input--error' : ''}`}
             type="text"
-            name="name"
-            placeholder="Your Name"
-            value={fields.name}
+            name="subject"
+            placeholder="What's this about?"
+            value={fields.subject}
             onChange={handleChange}
-            autoComplete="name"
           />
-          {errors.name && (
-            <span className="contact-form__error">{errors.name}</span>
+          {errors.subject && (
+            <span className="contact-form__error">{errors.subject}</span>
           )}
         </div>
 
+        {/* ── Message ── */}
         <div className="contact-form__field">
-          <label className="contact-form__label" htmlFor="cf-email">
-            Email
+          <label className="contact-form__label" htmlFor="cf-message">
+            Message
           </label>
-          <input
-            id="cf-email"
-            className={`contact-form__input ${errors.email ? 'contact-form__input--error' : ''}`}
-            type="email"
-            name="email"
-            placeholder="your@email.com"
-            value={fields.email}
+          <textarea
+            id="cf-message"
+            className={`contact-form__textarea ${errors.message ? 'contact-form__input--error' : ''}`}
+            name="message"
+            placeholder="Tell me about your project..."
+            rows={5}
+            value={fields.message}
             onChange={handleChange}
-            autoComplete="email"
           />
-          {errors.email && (
-            <span className="contact-form__error">{errors.email}</span>
+          {errors.message && (
+            <span className="contact-form__error">{errors.message}</span>
           )}
         </div>
 
-      </div>
+        {/* ── Privacy checkbox + Submit button ── */}
+        <div className="contact-form__footer">
 
-      {/* ── Subject ── */}
-      <div className="contact-form__field">
-        <label className="contact-form__label" htmlFor="cf-subject">
-          Subject
-        </label>
-        <input
-          id="cf-subject"
-          className={`contact-form__input ${errors.subject ? 'contact-form__input--error' : ''}`}
-          type="text"
-          name="subject"
-          placeholder="What's this about?"
-          value={fields.subject}
-          onChange={handleChange}
-        />
-        {errors.subject && (
-          <span className="contact-form__error">{errors.subject}</span>
-        )}
-      </div>
-
-      {/* ── Message ── */}
-      <div className="contact-form__field">
-        <label className="contact-form__label" htmlFor="cf-message">
-          Message
-        </label>
-        <textarea
-          id="cf-message"
-          className={`contact-form__textarea ${errors.message ? 'contact-form__input--error' : ''}`}
-          name="message"
-          placeholder="Tell me about your project..."
-          rows={5}
-          value={fields.message}
-          onChange={handleChange}
-        />
-        {errors.message && (
-          <span className="contact-form__error">{errors.message}</span>
-        )}
-      </div>
-
-      {/* ── Privacy checkbox + Submit button ── */}
-      <div className="contact-form__footer">
-
-        <label className="contact-form__checkbox-label">
-          <input
-            className="contact-form__checkbox"
-            type="checkbox"
-            name="privacy"
-            checked={fields.privacy}
-            onChange={handleChange}
-          />
-          <span className="contact-form__checkbox-custom" aria-hidden="true" />
-          <span className="contact-form__checkbox-text">
-            I agree to the privacy policy
-          </span>
-        </label>
-        {errors.privacy && (
-          <span className="contact-form__error contact-form__error--privacy">
-            {errors.privacy}
-          </span>
-        )}
-
-        <button
-          type="submit"
-          className="btn btn-primary contact-form__btn"
-          disabled={status === 'sending'}
-        >
-          {status === 'sending' ? (
-            <>
-              <span className="contact-form__spinner" aria-hidden="true" />
-              Sending…
-            </>
-          ) : (
-            'Send Message'
+          <label className="contact-form__checkbox-label">
+            <input
+              className="contact-form__checkbox"
+              type="checkbox"
+              name="privacy"
+              checked={fields.privacy}
+              onChange={handleChange}
+            />
+            <span className="contact-form__checkbox-custom" aria-hidden="true" />
+            <span className="contact-form__checkbox-text">
+              I agree to the privacy policy
+            </span>
+          </label>
+          {errors.privacy && (
+            <span className="contact-form__error contact-form__error--privacy">
+              {errors.privacy}
+            </span>
           )}
-        </button>
 
-      </div>
+          <button
+            type="submit"
+            className="btn btn-primary contact-form__btn"
+            disabled={status === 'sending'}
+          >
+            {status === 'sending' ? (
+              <>
+                <span className="contact-form__spinner" aria-hidden="true" />
+                Sending…
+              </>
+            ) : (
+              'Send Message'
+            )}
+          </button>
 
-    </form>
+        </div>
+
+      </form>
+    </Animate>
   )
 }
 

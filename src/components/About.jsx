@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 import '../styles/About.css'
 import { myData } from '../data/myData'
 import { scrollToTop } from './Footer'
+import Animate from './Animate'
 
 function About() {
   return (
@@ -75,15 +76,18 @@ function About() {
               Link is like <a href> but it navigates without
               reloading the page (React Router magic).
             */}
+            <Animate animation="slide-right" >
             <Link to="/profile" className="btn btn-primary about__cta" onClick={scrollToTop}>
               View Full Profile
               {/* Arrow icon using a unicode character */}
               <span className="about__cta-arrow" aria-hidden="true">→</span>
             </Link>
+            </Animate>
 
           </div>
 
           {/* ── RIGHT — Photo block ── */}
+          <Animate animation="bounce" >
           <div className="about__photo-wrap">
 
             {/* Decorative frame corners */}
@@ -117,6 +121,7 @@ function About() {
             </Link>
 
           </div>
+          </Animate>
 
         </div>
       </div>

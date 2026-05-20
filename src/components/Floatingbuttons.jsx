@@ -60,7 +60,9 @@ const BUTTONS = [
         id: 'email',
         label: 'Send an Email',
         // Replace with your real email — subject pre-filled
-        href: "https://mailto:deanmpire.tech@gmail.com?subject=Project%20Enquiry%20From%20Portfolio",
+        href: "https://mail.google.com/mail/?view=cm&fs=1&to=deanmpire.tech@gmail.com&su=Project%20Enquiry%20From%20Portfolio",
+        // &body=Hello%20Dean,%0A%0AI%20want%20to%20work%20with%20you.",
+        
         bgColor: '#d80808',
         iconBgColor: 'rgba(245,166,35,0.2)',
         textColor: '#f0ede8',
@@ -198,6 +200,7 @@ function FloatingButtons() {
             {BUTTONS.map((btn, i) => (
                 <a
                     key={btn.id}
+                    // onClick={() => window.location.href = btn.href}
                     href={btn.href}
                     target={btn.href.startsWith('http') ? '_blank' : '_self'}
                     rel="noopener noreferrer"

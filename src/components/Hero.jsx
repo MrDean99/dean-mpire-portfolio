@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 import '../styles/Hero.css'
 import { myData } from '../data/myData'
 import { scrollToTop } from './Footer'
+import Animate from './Animate'
 
 // ── Typing Animation Config ─────────────────
 // Add or change the roles shown in the animation
@@ -113,64 +114,65 @@ function Hero() {
                 <span className="hero__date-dot" aria-hidden="true" />
                 <span className="hero__date-text">{date}</span>
             </div> */}
+            <Animate>
+                {/* ── Center Content ── */}
+                <div className="hero__content">
 
-            {/* ── Center Content ── */}
-            <div className="hero__content">
+                    {/* Small label above name */}
+                    <p className="hero__eyebrow">
+                        <span className="hero__eyebrow-line" aria-hidden="true" />
+                        Available for work
+                    </p>
 
-                {/* Small label above name */}
-                <p className="hero__eyebrow">
-                    <span className="hero__eyebrow-line" aria-hidden="true" />
-                    Available for work
-                </p>
+                    {/* Main heading — your name */}
+                    <h1 className="hero__name">
+                        Hi<br />
+                        <span className="accent">Welcome</span>
+                    </h1>
 
-                {/* Main heading — your name */}
-                <h1 className="hero__name">
-                    Hi<br />
-                    <span className="accent">Welcome</span>
-                </h1>
-
-                {/* Typing animation row */}
-                <div className="hero__role-row">
-                    <span className="hero__role-prefix">I am a </span>
-                    {/*
+                    {/* Typing animation row */}
+                    <div className="hero__role-row">
+                        <span className="hero__role-prefix">I am a </span>
+                        {/*
             "displayText" changes every tick of the animation.
             The cursor "|" blinks via CSS animation.
           */}
-                    <span className="hero__role-typed">
-                        {displayText}
-                        <span className="hero__cursor" aria-hidden="true">|</span>
-                    </span>
+                        <span className="hero__role-typed">
+                            {displayText}
+                            <span className="hero__cursor" aria-hidden="true">|</span>
+                        </span>
+                    </div>
+
+                    {/* Short bio */}
+                    <p className="hero__bio">
+                        {myData.tagline}
+                    </p>
+
+                    {/* Skill tags */}
+                    <div className="hero__tags">
+                        {['React', 'CSS', 'JavaScript', 'Tailwind', 'Photoshop', 'Branding', 'Canvas'].map((tag) => (
+                            <span key={tag} className="hero__tag">{tag}</span>
+                        ))}
+                    </div>
+
+                    {/* CTA Buttons */}
+                    <div className="hero__buttons">
+                        <Link to="/works" className="btn btn-primary" onClick={scrollToTop}>
+                            View My Work
+                        </Link>
+                        <Link to="/contact" className="btn btn-secondary" onClick={scrollToTop}>
+                            Hire Me
+                        </Link>
+                    </div>
+
                 </div>
 
-                {/* Short bio */}
-                <p className="hero__bio">
-                    {myData.tagline}
-                </p>
-
-                {/* Skill tags */}
-                <div className="hero__tags">
-                    {['React', 'CSS', 'JavaScript', 'Tailwind', 'Photoshop', 'Branding', 'Canvas'].map((tag) => (
-                        <span key={tag} className="hero__tag">{tag}</span>
-                    ))}
+                {/* ── Scroll indicator — bottom center ── */}
+                <div className="hero__scroll-hint" aria-label="Scroll down">
+                    <span className="hero__scroll-text">Scroll</span>
+                    <div className="hero__scroll-line" aria-hidden="true" />
                 </div>
-
-                {/* CTA Buttons */}
-                <div className="hero__buttons">
-                    <Link to="/works" className="btn btn-primary" onClick={scrollToTop}>
-                        View My Work
-                    </Link>
-                    <Link to="/contact" className="btn btn-secondary" onClick={scrollToTop}>
-                        Hire Me
-                    </Link>
-                </div>
-
-            </div>
-
-            {/* ── Scroll indicator — bottom center ── */}
-            <div className="hero__scroll-hint" aria-label="Scroll down">
-                <span className="hero__scroll-text">Scroll</span>
-                <div className="hero__scroll-line" aria-hidden="true" />
-            </div>
+            </Animate>
 
         </section>
     )

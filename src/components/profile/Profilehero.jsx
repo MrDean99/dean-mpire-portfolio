@@ -14,6 +14,7 @@
 
 import { myData, SOCIALS } from '../../data/myData'
 import '../../styles/profile/Profilehero.css'
+import Animate from '../Animate'
 
 
 // ── ✏️ YOUR DETAILS — edit these ─────────────
@@ -44,33 +45,35 @@ function ProfileHero() {
         <div className="profile-hero__inner">
 
           {/* ── LEFT: Photo ── */}
-          <div className="profile-hero__photo-wrap">
+          <Animate animation="zoom-out">
+            <div className="profile-hero__photo-wrap">
 
-            {/* Corner brackets */}
-            <div className="profile-hero__corner profile-hero__corner--tl" aria-hidden="true" />
-            <div className="profile-hero__corner profile-hero__corner--br" aria-hidden="true" />
+              {/* Corner brackets */}
+              <div className="profile-hero__corner profile-hero__corner--tl" aria-hidden="true" />
+              <div className="profile-hero__corner profile-hero__corner--br" aria-hidden="true" />
 
-            <div className="profile-hero__photo">
-              {PROFILE.photo ? (
-                <img src={PROFILE.photo} alt={PROFILE.name} />
-              ) : (
-                <div className="profile-hero__photo-placeholder">
-                  <span className="profile-hero__photo-icon" aria-hidden="true">👤</span>
-                  <p className="profile-hero__photo-hint">Add your photo</p>
-                  <p className="profile-hero__photo-sub">
-                    Set photo: '/your-photo.jpg'<br />in ProfileHero.jsx
-                  </p>
-                </div>
-              )}
+              <div className="profile-hero__photo">
+                {PROFILE.photo ? (
+                  <img src={PROFILE.photo} alt={PROFILE.name} />
+                ) : (
+                  <div className="profile-hero__photo-placeholder">
+                    <span className="profile-hero__photo-icon" aria-hidden="true">👤</span>
+                    <p className="profile-hero__photo-hint">Add your photo</p>
+                    <p className="profile-hero__photo-sub">
+                      Set photo: '/your-photo.jpg'<br />in ProfileHero.jsx
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Available badge floats over the photo */}
+              <div className="profile-hero__badge">
+                <span className="profile-hero__badge-dot" aria-hidden="true" />
+                Available for work
+              </div>
+
             </div>
-
-            {/* Available badge floats over the photo */}
-            <div className="profile-hero__badge">
-              <span className="profile-hero__badge-dot" aria-hidden="true" />
-              Available for work
-            </div>
-
-          </div>
+          </Animate>
 
           {/* ── RIGHT: Info ── */}
           <div className="profile-hero__info">
@@ -129,21 +132,23 @@ function ProfileHero() {
               </a>
 
               {/* Social icon buttons */}
-              <div className="profile-hero__socials">
-                {PROFILE.socials.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="profile-hero__social-btn"
-                    aria-label={s.label}
-                    title={s.label}
-                  >
-                    {s.icon}
-                  </a>
-                ))}
-              </div>
+              <Animate animation="zoom-in">
+                <div className="profile-hero__socials">
+                  {PROFILE.socials.map((s) => (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="profile-hero__social-btn"
+                      aria-label={s.label}
+                      title={s.label}
+                    >
+                      {s.icon}
+                    </a>
+                  ))}
+                </div>
+              </Animate>
 
             </div>
 

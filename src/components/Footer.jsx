@@ -20,6 +20,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import '../styles/Footer.css'
 import { FOOTER_DATA } from '../data/footerData'
+import Animate from './Animate'
 
 // ── Scroll to top helper ──────────────────────
 export function scrollToTop() {
@@ -46,32 +47,35 @@ function Footer() {
                     <div className="footer-cta__inner">
 
                         {/* Left: text */}
-                        <div className="footer-cta__text">
-                            <p className="section-label">Open for opportunities</p>
-                            <h2 className="footer-cta__heading">
-                                Let's work<br />
-                                <span className="accent">together.</span>
-                            </h2>
-                            <p className="footer-cta__subtext">
-                                Have a project, a role, or just an idea?
-                                I'm always open to the right conversation.
-                            </p>
-                        </div>
+                        <Animate animation="fade-right">
+                            <div className="footer-cta__text">
+                                <p className="section-label">Open for opportunities</p>
+                                <h2 className="footer-cta__heading">
+                                    Let's work<br />
+                                    <span className="accent">together.</span>
+                                </h2>
+                                <p className="footer-cta__subtext">
+                                    Have a project, a role, or just an idea?
+                                    I'm always open to the right conversation.
+                                </p>
+                            </div>
+                        </Animate>
 
                         {/* Right: Hire Me button */}
                         <div className="footer-cta__action">
                             {/*
                 The big "Hire Me" CTA.
                 Link goes to /contact page.
-              */}
-                            <Link to="/contact" className="footer-cta__btn" onClick={scrollToTop}>
-                                Hire Me
-                                <span className="footer-cta__btn-arrow" aria-hidden="true">→</span>
-                            </Link>
-                            <p className="footer-cta__response">
-                                <span className="footer-cta__dot" aria-hidden="true" />
-                                Usually responds within 24h
-                            </p>
+              */}           <Animate animation="fade-left">
+                                <Link to="/contact" className="footer-cta__btn" onClick={scrollToTop}>
+                                    Hire Me
+                                    <span className="footer-cta__btn-arrow" aria-hidden="true">→</span>
+                                </Link>
+                                <p className="footer-cta__response">
+                                    <span className="footer-cta__dot" aria-hidden="true" />
+                                    Usually responds within 24h
+                                </p>
+                            </Animate>
                         </div>
 
                     </div>
@@ -152,7 +156,7 @@ function Footer() {
                                         </svg>
                                     </span>
                                     <a
-                                        href={`https://mailto:${FOOTER_DATA.email}`}
+                                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${FOOTER_DATA.email}&su=Project%20Enquiry%20From%20Portfolio`}
                                         className="footer-contact__link"
                                         target="_blank"
                                     >

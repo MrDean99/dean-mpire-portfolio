@@ -1,0 +1,197 @@
+/* ============================================
+   Preloader.css
+   ============================================
+   Uses global.css variables everywhere so it
+   automatically adapts to light mode and any
+   future theme changes.
+
+   KEY ANIMATIONS:
+   - preloader__ring  → full 360° spin
+   - preloader__glow  → slow breathing pulse
+   - preloader__tip   → brightness pulse on leading edge
+   - preloader (fade) → opacity 1→0 on exit via .preloader--fading
+   ============================================ */
+
+
+/* ── Full-screen overlay ─────────────────── */
+.preloader {
+  /* Sits above everything — higher than navbar (z:1000) */
+  position: fixed;
+  inset: 0;             /* top:0 right:0 bottom:0 left:0 shorthand */
+  z-index: 9999;
+
+  /* Dark background matching our site background */
+  background-color: var(--color-bg);
+
+  /* Center all children */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Overflow hidden clips the glow blobs */
+  overflow: hidden;
+
+  /* Fade-out transition — duration comes from inline style var */
+  opacity: 1;
+  transition: opacity var(--fade-duration, 600ms) ease;
+}
+
+/* Fading state — triggers the CSS transition */
+.preloader--fading {
+  opacity: 0;
+  /* Also scale slightly to give a receding feel */
+  transform: scale(1.02);
+  transition:
+    opacity  var(--fade-duration, 600ms) ease,
+    transform var(--fade-duration, 600ms) ease;
+}
+
+
+/* ── Ambient glow blob ───────────────────── */
+/*
+  A large radial gradient centered on the canvas.
+  Uses our --color-accent (amber) at very low opacity
+  to create the warm inner glow from the reference.
+*/
+.preloader__glow {
+  position: absolute;
+  inset: 0;
+  /*
+    We can't do rgba() directly on a CSS hex variable,
+    so we use a fixed low-opacity amber here.
+    This is intentional and matches how other components
+    handle the same limitation.
+  */
+  background: radial-gradient(
+    ellipse 60% 60% at 50% 50%,
+    rgba(245, 166, 35, 0.08) 0%,
+    rgba(245, 166, 35, 0.04) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: glowBreathe 4s ease-in-out infinite;
+}
+
+@keyframes glowBreathe {
+  0%, 100% { opacity: 0.6; transform: scale(1);    }
+  50%       { opacity: 1;   transform: scale(1.15); }
+}
+
+
+/* ── Ring wrapper — spins the whole SVG ─── */
+.preloader__ring-wrap {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  animation: ringRotate 2.2s linear infinite;
+}
+
+@keyframes ringRotate {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+/* The SVG itself fills its wrapper */
+.preloader__ring {
+  width:  100%;
+  height: 100%;
+}
+
+
+/* ── Shared arc styles ───────────────────── */
+.preloader__arc {
+  fill:        none;
+  stroke-linecap: round;  /* rounded arc ends — matches the reference image */
+}
+
+/* Outer arc — main amber stroke */
+.preloader__arc--outer {
+  stroke:       var(--color-accent);
+  stroke-width: 2.5;
+  opacity:      0.9;
+}
+
+/* Outer arc — wide soft glow layer */
+.preloader__arc--outer-glow {
+  stroke:       var(--color-accent);
+  stroke-width: 8;
+  opacity:      0.25;
+}
+
+/* Inner arc — brighter, slightly offset */
+.preloader__arc--inner {
+  stroke:       var(--color-accent);
+  stroke-width: 1.5;
+  opacity:      1;
+  /* Slightly lighter/brighter — the reference has a double line */
+  filter: brightness(1.3);
+}
+
+/* Inner arc — tight glow */
+.preloader__arc--inner-glow {
+  stroke:       var(--color-accent);
+  stroke-width: 5;
+  opacity:      0.15;
+}
+
+/* Leading bright tip */
+.preloader__tip {
+  fill:    var(--color-accent);
+  opacity: 0.9;
+  animation: tipPulse 2.2s linear infinite;
+}
+
+@keyframes tipPulse {
+  0%, 90%, 100% { opacity: 0.9; r: 3; }
+  45%           { opacity: 1;   r: 4; }
+}
+
+
+/* ── Center content ──────────────────────── */
+.preloader__center {
+  position:   relative;   /* sits above the glow layer */
+  z-index:    1;
+  display:    flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  /* Subtle fade-in on mount */
+  animation: centerFadeIn 0.8s ease 0.3s both;
+}
+
+@keyframes centerFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* Name — big spaced-out display type */
+.preloader__name {
+  font-family: var(--font-display);
+  font-size:   clamp(18px, 3vw, 26px);
+  font-weight: 800;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+/* The accented part of the name */
+.preloader__name-accent {
+  color: var(--color-accent);
+}
+
+/* Tagline — "Loading…" or custom message */
+.preloader__tagline {
+  font-family:  var(--font-body);
+  font-size:    11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  /* Blinking dots effect */
+  animation: taglineBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes taglineBlink {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1;   }
+}
