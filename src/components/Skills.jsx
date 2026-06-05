@@ -55,7 +55,7 @@ function SkillRow({ skill, animate }) {
         
         Example: level = 7 → dashes 0–6 are filled, 7–9 are empty
       */}
-        <div
+        {/* <div
           className="skill-row__bar"
           role="progressbar"
           aria-valuenow={skill.level}
@@ -74,7 +74,7 @@ function SkillRow({ skill, animate }) {
               }}
             />
           ))}
-        </div>
+        </div> */}
 
       </div>
     </Animate>

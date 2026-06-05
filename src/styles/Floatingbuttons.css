@@ -55,6 +55,7 @@
   /* Prevent text selection on click */
   user-select: none;
   cursor: pointer;
+  /* border: 1px solid red; */
 }
 
 /* ── Visible state — slides into view ───── */
@@ -73,6 +74,14 @@
   transform: translateX(0) translateY(-3px);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
   filter: brightness(1.08);
+  transition: max-width 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.floating-btn:hover .floating-btn__label{
+  max-width: 200px;
+    opacity: 100;
+    padding: 0 0.6rem;
+    transition: max-width 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
 }
 
 /* Active / tap — press down */
@@ -113,8 +122,11 @@
   padding: 0 20px 0 12px;
   /* Smooth show/hide on resize */
   transition: max-width 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
-  max-width: 200px;
+  /* max-width: 200px; */
   overflow: hidden;
+  max-width: 0;
+    opacity: 0;
+    padding: 0;       
 }
 
 /* ── Mobile — icon only ──────────────────── */

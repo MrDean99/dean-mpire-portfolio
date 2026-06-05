@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import '../styles/Navbar.css'
 import { scrollToTop } from './Footer'
+import { myData } from '../data/myData'
 
 function Navbar() {
   // ── State ──────────────────────────────────
@@ -95,9 +96,9 @@ function Navbar() {
 
           {/* ── CTA Button — "Hire Me" ── */}
           <li>
-            <NavLink to="/contact" className="navbar__cta btn btn-primary" onClick={handleLinkClick}>
-              Hire Me
-            </NavLink>
+            <a href={myData.cvUrl} target='blank' className="navbar__cta btn btn-primary" onClick={handleLinkClick}>
+              Download cv
+            </a>
           </li>
         </ul>
 

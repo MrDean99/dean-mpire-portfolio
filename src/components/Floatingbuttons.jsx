@@ -158,31 +158,31 @@ function FloatingButtons() {
         // "allInTime" = time when the LAST button finishes sliding in
         const allInTime = (BUTTONS.length - 1) * SLIDE_STAGGER
 
-        schedule(() => {
+        // schedule(() => {
 
-            // ── PHASE 3: slide OUT in reverse order ──
-            // We reverse so the top button (last in array)
-            // disappears first, then the bottom button last.
-            // This feels more natural than disappearing bottom-up.
-            ;[...BUTTONS].reverse().forEach((_, reversedIndex) => {
-                // Convert reversed index back to real array index
-                const realIndex = BUTTONS.length - 1 - reversedIndex
-                schedule(() => {
-                    setVisible(prev => {
-                        const next = [...prev]
-                        next[realIndex] = false   // hide button
-                        return next
-                    })
-                }, reversedIndex * SLIDE_STAGGER)
-            })
+        //     // ── PHASE 3: slide OUT in reverse order ──
+        //     // We reverse so the top button (last in array)
+        //     // disappears first, then the bottom button last.
+        //     // This feels more natural than disappearing bottom-up.
+        //     ;[...BUTTONS].reverse().forEach((_, reversedIndex) => {
+        //         // Convert reversed index back to real array index
+        //         const realIndex = BUTTONS.length - 1 - reversedIndex
+        //         schedule(() => {
+        //             setVisible(prev => {
+        //                 const next = [...prev]
+        //                 next[realIndex] = false   // hide button
+        //                 return next
+        //             })
+        //         }, reversedIndex * SLIDE_STAGGER)
+        //     })
 
-            // ── PHASE 4: after all slid out, wait then restart ──
-            const allOutTime = (BUTTONS.length - 1) * SLIDE_STAGGER
-            schedule(() => {
-                runCycle()   // 🔁 restart the whole cycle
-            }, allOutTime + HIDDEN_HOLD)
+        //     // ── PHASE 4: after all slid out, wait then restart ──
+        //     const allOutTime = (BUTTONS.length - 1) * SLIDE_STAGGER
+        //     schedule(() => {
+        //         runCycle()   // 🔁 restart the whole cycle
+        //     }, allOutTime + HIDDEN_HOLD)
 
-        }, allInTime + VISIBLE_HOLD)
+        // }, allInTime + VISIBLE_HOLD)
         // ↑ start phase 3 after all are visible + hold time
     }
 

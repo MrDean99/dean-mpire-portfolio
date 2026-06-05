@@ -3,7 +3,7 @@ import { graphicsProjects, webProjects } from "./projectsData";
 export const myData = {
     name: "Onyeabor Innocent",
     title: "Web Developer & Graphics Designer",
-    location: "Enugu, Nigeria",
+    location: "Nigeria",
     whatsApp: '+234 706 635 6543',
     phone: '+234 706 635 6543',
     email: 'deanmpire.tech@gmail.com',

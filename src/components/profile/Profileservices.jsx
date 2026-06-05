@@ -118,11 +118,11 @@ function ProfileServices() {
                 style={{ '--svc-accent': svc.accent }}
               >
                 {/* Icon */}
-                <div className="svc-card__icon-wrap">
+                {/* <div className="svc-card__icon-wrap">
                   <span className="svc-card__icon" aria-hidden="true">
                     {svc.icon}
                   </span>
-                </div>
+                </div> */}
 
                 {/* Title */}
                 <h3 className="svc-card__title">{svc.title}</h3>

@@ -26,8 +26,18 @@
 
 // ── WEB PROJECTS ────────────────────────────
 export const webProjects = [
+   {
+    id: `web-01`,
+    title: 'BixFlo',
+    description:
+      'Powerful, easy-to-use tools that help you manage bookings, handle payments, understand your customers, and make smarter business decisions — all from one place..',
+    image: "/img13.jpg",  // replace with "/projects/alpha.jpg"
+    tags: ['React', 'SuperBase', 'CSS', 'REST API'],
+    liveUrl: "https://bixflo.vercel.app/",  // replace with "https://your-project.com"
+    featured: true,
+  },
   {
-    id: 'web-01',
+    id: 'web-02',
     title: 'Project Alpha',
     description:
       'A full-stack web application with user authentication, dashboard, and real-time data updates.',
@@ -37,7 +47,7 @@ export const webProjects = [
     featured: true,
   },
   {
-    id: 'web-02',
+    id: 'web-03',
     title: 'Landing Page — Studio',
     description:
       'Clean marketing landing page for a creative studio. Scroll animations, responsive layout.',
@@ -47,7 +57,7 @@ export const webProjects = [
     featured: true,
   },
   {
-    id: 'web-03',
+    id: 'web-04',
     title: 'E-Commerce Store',
     description:
       'Fully functional online store with cart, checkout flow, and product filtering.',
@@ -57,7 +67,7 @@ export const webProjects = [
     featured: true,
   },
   {
-    id: 'web-04',
+    id: 'web-05',
     title: 'Portfolio Template',
     description:
       'A minimal portfolio template built for designers and developers. Dark mode only.',

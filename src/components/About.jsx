@@ -105,7 +105,7 @@ function About() {
                 <img src="/your-photo.jpg" alt="Your Name" />
                 Put your photo in the /public folder of your project.
               */}
-              <img src="/img3.jpg" alt="" />
+              <img src="/img5.png" alt="" />
               {/* <div className="about__photo-placeholder">
                 <span className="about__photo-icon" aria-hidden="true">👤</span>
                 <p className="about__photo-hint">Your photo here</p>
